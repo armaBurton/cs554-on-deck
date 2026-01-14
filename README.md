@@ -17,3 +17,7 @@ Initially, the goal for this application was to create an app that would assist 
     - Depending on how ambitious I feel. It is the language I am the least familiar with.
   - python
     - I want to use a different language on the back end than the front end, rather than another JavaScript framework
+- Data Base
+  - PostgreSQL
+    - The language is simple and I am familiar with it
+    - Most likely hosting on supabase
