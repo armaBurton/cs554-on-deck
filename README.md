@@ -6,4 +6,4 @@ Initially, the goal for this application was to create an app that would assist 
 
 ## With your group, choose a programming language. What language are you using and why?
 - Front End
--   TypeScript
+  - TypeScript
