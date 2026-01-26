@@ -1,5 +1,5 @@
 # 1 Features
-- ** Authentication **
+- **Authentication**
   - OAuth
   - username/password
 - ** Profiles **
