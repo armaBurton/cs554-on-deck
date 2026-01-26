@@ -1,0 +1,26 @@
+# Features
+- ** Authentication **
+  - OAuth
+  - username/password
+- ** Profiles **
+  - Name
+  - Performer Name
+  - Email
+  - optional
+    - photo
+    - bio
+    - socials
+- ** Event Creation **
+  - venue
+  - date
+  - time
+  - description
+  - social media
+- ** List Generation **
+  - Randomize/Lock at a set time
+  - New artists added at end of list after Lock Time
+  - List Owner can modify locked list
+  - Users can add themselves remotely
+    - Users will be tentatively added
+    - Users will finalized addition by checking in with host
+  - Users will be able to suscribe or unsuscribe to events based on hosts or locations
