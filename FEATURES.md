@@ -1,4 +1,4 @@
-# Features
+# 1 Features
 - ** Authentication **
   - OAuth
   - username/password
@@ -14,6 +14,9 @@
   - venue
   - date
   - time
+    - sign up
+    - start
+    - end
   - description
   - social media
 - ** List Generation **
@@ -23,4 +26,27 @@
   - Users can add themselves remotely
     - Users will be tentatively added
     - Users will finalized addition by checking in with host
-  - Users will be able to suscribe or unsuscribe to events based on hosts or locations
+  - Users should be able to suscribe or unsuscribe to events based on hosts or locations
+  - Save list details for future reference
+
+ # 2 MVP
+ - ** Authentication **
+  - OAuth
+- ** Profiles **
+  - Name
+  - Performer Name
+  - Email
+- ** Event Creation **
+  - venue
+  - date
+  - time
+    - sign up
+    - start
+    - end
+- ** List Generation **
+  - Randomize/Lock at a set time
+  - New artists added at end of list after Lock Time
+  - List Owner can modify locked list
+
+ # 3 User Stories
+ -
