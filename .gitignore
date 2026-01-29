@@ -1,0 +1,70 @@
+# C# / Visual Studio
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+*.user
+*.userprefs
+*.csproj.user
+*.sln.DotSettings.user
+.vs/
+.vscode/
+.vscode
+properties/launchSettings.json
+
+# NuGet
+*.nupkg
+*.nuget.props
+.nuget/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+bld/
+
+# Entity Framework
+*.edmx.diagram
+
+# Rider
+.idea/
+.idea
+
+# Local environment variables
+.env
+.env.local
+.env.*.local
+
+# Supabase credentials and keys
+supabase/
+.supabase/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+*.swp
+*.swo
+*~
+
+# TypeScript
+*.d.ts
+*.js.map
+*.ts.map
+dist/
+node_modules/
+package-lock.json
+yarn.lock
+tsconfig*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+
+# Package manager lock files (optional - uncomment if you want to ignore)
+packages.lock.json
