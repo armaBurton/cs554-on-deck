@@ -73,6 +73,9 @@ packages.lock.json
 backend/bin/
 backend/obj/
 backend/.env
+backend/venv/
+backend/__pycache__/
+*.pyc
 
 # Frontend
 frontend/node_modules
