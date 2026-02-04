@@ -34,7 +34,7 @@ supabase: Client = create_client(url, key)
 
 
 # Authentication Supabase Client
-async def get_current_user(request: Request) -> str:
+async def get_current_user_id(request: Request) -> str:
     """Dependency to get your ID from Supabase JWT in Authorization header."""
     token = request.headers.get("Authorization")
     if not token:
