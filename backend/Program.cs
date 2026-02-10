@@ -1,6 +1,6 @@
 // Program.cs
 using backend.Services;
-using Microsoft.OpenApi;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +8,6 @@ DotNetEnv.Env.Load();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "On Deck Supabase API", Version = "v1" });
@@ -64,7 +63,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.MapOpenApi();
+}
+else
+{
+    app.UseHttpsRedirection();
 }
 
 app.UseHttpsRedirection();
