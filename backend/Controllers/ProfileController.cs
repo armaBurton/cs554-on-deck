@@ -31,12 +31,12 @@ public class ProfileController : ControllerBase
         try
         {
             var parts = token.Split('.');
-            if (parts.length != 3)
+            if (parts.Length != 3)
                 return null;
 
             var payload = parts[1];
             var paddedPayload = payload.PadRight(
-                payload.length + (4 - payload.Length % 4) % 4,
+                payload.Length + (4 - payload.Length % 4) % 4,
                 '='
             );
             var payloadBytes = Convert.FromBase64String(paddedPayload);
@@ -131,7 +131,7 @@ public class ProfileController : ControllerBase
                 Url = request.Url,
             };
 
-            var result = await client.From<social>().Insert(social);
+            var result = await client.From<Social>().Insert(social);
             return Ok(result.Models.FirstOrDefault());
         }
         catch (Exception ex)

@@ -1,7 +1,9 @@
 // Services/SupabaseService.cs
+using Supabase;
+
 namespace backend.Services;
 
-public class Supabase : ISupabaseService
+public class SupabaseService : ISupabaseService
 {
     private readonly string _url;
     private readonly string _key;
@@ -24,12 +26,18 @@ public class Supabase : ISupabaseService
     {
         if (_client == null)
         {
-            var options = new SupabaseOptions
-            {
-                AutoRefreshToken = true,
-                AutoConnectionRealtime = tru,
-            };
+            var options = new SupabaseOptions { AutoRefreshToken = true };
             _client = new Client(_url, _key, options);
+            _client.InitializeAsync();
+        }
+        return _client;
+    }
+
+    public async Task<Client> GetClientAsync()
+    {
+        if (_client == null)
+        {
+            _client = new Client(_url, _key);
             await _client.InitializeAsync();
         }
         return _client;
