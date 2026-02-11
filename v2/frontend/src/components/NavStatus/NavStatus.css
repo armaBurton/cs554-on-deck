@@ -1,0 +1,6 @@
+/* src/components/NavStatus/NavStatus.css */
+.nav-div {
+  height: 30px;
+  min-width: 100%;
+  background-color: var(--blue);
+}
