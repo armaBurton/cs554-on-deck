@@ -1,7 +1,7 @@
 // src/pages/Login/Login.tsx
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext.ts";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -43,7 +43,7 @@ export const Login: React.FC = () => {
         {error && <div className="error">{error}</div>}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="">Email</label>
+            <label>Email</label>
             <input
               type="email"
               value={email}
@@ -52,7 +52,7 @@ export const Login: React.FC = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="">Password</label>
+            <label>Password</label>
             <input
               type="password"
               value={password}

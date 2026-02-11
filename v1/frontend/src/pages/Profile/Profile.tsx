@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../lib/supabase";
 import { useAuth } from "../../contexts/AuthContext";
-import { Profile as ProfileType, Social } from "../../types";
+import type { Profile as ProfileType, Social } from "../../types/types";
 
 export const Profile: React.FC = () => {
   const { user } = useAuth();
@@ -124,7 +124,7 @@ export const Profile: React.FC = () => {
             <input
               type="text"
               value={firstName}
-              onChange={(e) => e.target.value}
+              onChange={(e) => setFirstName(e.target.value)}
             />
           </div>
 
@@ -133,7 +133,7 @@ export const Profile: React.FC = () => {
             <input
               type="text"
               value={lastName}
-              onChange={(e) => e.target.value}
+              onChange={(e) => setLastName(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -141,7 +141,7 @@ export const Profile: React.FC = () => {
             <input
               type="text"
               value={stageName}
-              onChange={(e) => e.target.value}
+              onChange={(e) => setStageName(e.target.value)}
             />
           </div>
 
