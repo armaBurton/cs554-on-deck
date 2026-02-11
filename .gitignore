@@ -70,14 +70,14 @@ logs/
 packages.lock.json
 
 # Backend
-backend/bin/
-backend/obj/
-backend/.env
-backend/venv/
-backend/__pycache__/
+*/backend/bin/
+*/backend/obj/
+*/backend/.env
+*/backend/venv/
+*/backend/__pycache__/
 *.pyc
 
 # Frontend
-frontend/node_modules
-frontend/dist/
-frontend/.env*.local
+*/frontend/node_modules
+*/frontend/dist/
+*/frontend/.env*.local
