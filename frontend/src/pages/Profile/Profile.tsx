@@ -51,4 +51,144 @@ export const Profile: React.FC = () => {
       setLoading(false);
     }
   };
+
+  const updateProfile = async (e: React.SubmitEvent) => {
+    e.preventDefault();
+    setUpdating(true);
+
+    try {
+      const { error } = await supabase
+        .from("profiles")
+        .update({
+          first_name: firstName,
+          last_name: lastName,
+          stage_name: stageName,
+        })
+        .eq("id", user!.id);
+
+      if (error) throw error;
+
+      alert("Profile Updated Successfully");
+      loadProfile();
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      alert("Failed to update profile");
+    } finally {
+      setUpdating(false);
+    }
+  };
+
+  const addSocial = async (e: React.SubmitEvent) => {
+    e.preventDefault();
+
+    try {
+      const { error } = await supabase.from("socials").insert({
+        platform_id: user!.id,
+        platform: newSocialPlatform,
+        url: newSocialUrl,
+      });
+
+      if (error) throw error;
+    } catch (error) {
+      console.error("Error adding social:", error);
+      alert("Failed to add social");
+    }
+  };
+
+  const deleteSocial = async (id: string) => {
+    try {
+      const { error } = await supabase.from("socials").delete().eq("id", id);
+
+      if (error) throw error;
+      loadProfile();
+    } catch (error) {
+      console.error("Error deleting social:", error);
+      alert("Failed to delete social");
+    }
+  };
+
+  if (loading) return <div>Loading...</div>;
+
+  return (
+    <div className="profile-container">
+      <h1>Profile</h1>
+      <div className="profile-section">
+        <h2>Personal Information</h2>
+        <p>
+          <span className="strong">Email:</span>
+          {profile?.email}
+        </p>
+        <form onSubmit={updateProfile}>
+          <div className="form-group">
+            <label>First Name</label>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => e.target.value}
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Last Name</label>
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => e.target.value}
+            />
+          </div>
+          <div className="form-group">
+            <label>Stage Name</label>
+            <input
+              type="text"
+              value={stageName}
+              onChange={(e) => e.target.value}
+            />
+          </div>
+
+          <button type="submit" disabled={updating}>
+            {updating ? "Updating..." : "Update Profile"}
+          </button>
+        </form>
+      </div>
+
+      <div className="profile-section">
+        <h2>Social Links</h2>
+        <div className="socials-list">
+          {socials.map((social) => (
+            <div key={social.id} className="social-item">
+              <p>
+                <span className="strong">{social.platform}</span> {social.url}
+              </p>
+              <button onClick={() => deleteSocial(social.id)}>Delete</button>
+            </div>
+          ))}
+        </div>
+
+        <form onSubmit={addSocial} className="add-social-form">
+          <h3>Add Social Link</h3>
+          <div className="form-group">
+            <label>Platform</label>
+            <input
+              type="text"
+              value={newSocialPlatform}
+              onChange={(e) => setNewSocialPlatform(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label>URL</label>
+            <input
+              type="text"
+              value={newSocialUrl}
+              onChange={(e) => setNewSocialUrl(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Add Social</button>
+        </form>
+        {/*  */}
+      </div>
+    </div>
+  );
 };
