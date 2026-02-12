@@ -5,7 +5,9 @@ import {
 } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
 import { OnDeck } from "./pages/OnDeck/OnDeck";
+import { SignUp } from "./pages/SignUp/SignUp";
 import { PrivateRoutes } from "./components/PrivateRoutes/PrivateRoutes";
+import { Profile } from "./pages/Profile/Profile";
 import "./App.css";
 
 const router = createBrowserRouter([
@@ -15,7 +17,11 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Navigate to="/on-deck" /> },
       { path: "on-deck", element: <OnDeck /> },
-      { element: <PrivateRoutes />, children: [] },
+      { path: "sign-up", element: <SignUp /> },
+      {
+        element: <PrivateRoutes children={undefined} />,
+        children: [{ path: "profile", element: <Profile /> }],
+      },
     ],
   },
 ]);
