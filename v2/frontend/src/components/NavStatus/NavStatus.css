@@ -2,5 +2,10 @@
 .nav-div {
   height: 30px;
   min-width: 100%;
-  background-color: var(--blue);
+  background-color: var(--grey);
+  color: var(--blue);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
 }
