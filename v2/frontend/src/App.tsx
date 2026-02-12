@@ -4,8 +4,8 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
-import { OnDeck } from "./pages/OnDeck/OnDeck";
-import { SignUp } from "./pages/SignUp/SignUp";
+import { OnDeck } from "./pages/Modal/OnDeck/OnDeck";
+import { SignUp } from "./pages/Modal/SignUp/SignUp";
 import { PrivateRoutes } from "./components/PrivateRoutes/PrivateRoutes";
 import { Profile } from "./pages/Profile/Profile";
 import "./App.css";
