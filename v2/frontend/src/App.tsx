@@ -6,6 +6,7 @@ import {
 import { Layout } from "./components/Layout/Layout";
 import { Welcome } from "./pages/Modal/Welcome/Welcome";
 import { Register } from "./pages/Modal/Register/Register";
+import { OnDeck } from "./pages/OnDeck/OnDeck";
 import { PrivateRoutes } from "./components/PrivateRoutes/PrivateRoutes";
 import { Profile } from "./pages/Profile/Profile";
 import "./App.css";
@@ -20,7 +21,10 @@ const router = createBrowserRouter([
       { path: "register", element: <Register /> },
       {
         element: <PrivateRoutes children={undefined} />,
-        children: [{ path: "profile", element: <Profile /> }],
+        children: [
+          { path: "on-deck", element: <OnDeck /> },
+          { path: "profile", element: <Profile /> },
+        ],
       },
     ],
   },

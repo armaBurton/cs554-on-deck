@@ -7,7 +7,7 @@ using Supabase.Gotrue;
 namespace backend.Controllers;
 
 [ApiController]
-[Route("api/[contoller]")]
+[Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
     private readonly ISupabaseService _supabaseService;
@@ -26,7 +26,7 @@ public class AuthController : ControllerBase
         {
             var client = await _supabaseService.GetClientAsync();
 
-            var options = new SingUpOptions
+            var options = new SignUpOptions
             {
                 Data = new Dictionary<string, object>
                 {

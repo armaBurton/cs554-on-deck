@@ -21,6 +21,13 @@ export const Register: React.FC = () => {
     setError("");
     setLoading(true);
 
+    if (password !== validate) {
+      console.log("Passwords do not match");
+      setPassword("");
+      setValidate("");
+      return;
+    }
+
     try {
       await register(email, password, firstName, lastName, stageName);
       navigate("/on-deck");
