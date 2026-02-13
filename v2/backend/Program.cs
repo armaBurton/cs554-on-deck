@@ -39,3 +39,20 @@ builder.Services.AddSwaggerGen(c =>
         }
     );
 });
+
+builder.Services.AddSingleton<ISupabaseServices, SupabaseServices>();
+
+var allowedOrigins =
+    builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
+    ?? new[] { "http://localhost:5173" };
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(
+        "AllowFrontend",
+        policy =>
+        {
+            policy.WithOrigins(allowedOrigins).ALlowAnyMethod().AllowAnyHeader().AllowCredentials();
+        }
+    );
+});
