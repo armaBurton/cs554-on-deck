@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Modal.css";
 
-export const OnDeck: React.FC = () => {
+export const Welcome: React.FC = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -15,7 +15,7 @@ export const OnDeck: React.FC = () => {
             <button className="modal-button">Sign In</button>
             <button
               className="modal-button"
-              onClick={() => navigate("/sign-up")}
+              onClick={() => navigate("/register")}
             >
               Register
             </button>

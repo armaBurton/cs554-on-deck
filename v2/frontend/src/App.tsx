@@ -4,8 +4,8 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
-import { OnDeck } from "./pages/Modal/OnDeck/OnDeck";
-import { SignUp } from "./pages/Modal/SignUp/SignUp";
+import { Welcome } from "./pages/Modal/Welcome/Welcome";
+import { Register } from "./pages/Modal/Register/Register";
 import { PrivateRoutes } from "./components/PrivateRoutes/PrivateRoutes";
 import { Profile } from "./pages/Profile/Profile";
 import "./App.css";
@@ -15,9 +15,9 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     children: [
-      { index: true, element: <Navigate to="/on-deck" /> },
-      { path: "on-deck", element: <OnDeck /> },
-      { path: "sign-up", element: <SignUp /> },
+      { index: true, element: <Navigate to="/welcome" /> },
+      { path: "welcome", element: <Welcome /> },
+      { path: "register", element: <Register /> },
       {
         element: <PrivateRoutes children={undefined} />,
         children: [{ path: "profile", element: <Profile /> }],

@@ -1,0 +1,120 @@
+// src/pages/SignUp/SignUp.tsx
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../contexts/AuthContexts";
+import "../Modal.css";
+
+export const Register: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passCheck, setPassCheck] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [stageName, setStageName] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const { register } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.SubmitEvent) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try {
+      await register(email, password, firstName, lastName);
+      navigate("/on-deck");
+    } catch (err: any) {
+      setError(err.message || "Failed to Register");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <section className="modal-background">
+        <div className="modal">
+          <h1>On Deck</h1>
+          <h3>Create an Account</h3>
+          <form className="modal-form">
+            <div className="modal-form-group email-group">
+              {/* <label className="modal-label">First Name</label> */}
+              <input
+                type="email"
+                className="modal-input email-input"
+                placeholder="Email"
+                required
+              />
+            </div>
+
+            <div className="modal-form-group password-group">
+              {/* <label className="modal-label">Last Name</label> */}
+              <input
+                type="password"
+                className="modal-input password-input"
+                placeholder="Password"
+                required
+              />
+            </div>
+
+            <div className="modal-form-group password-group validate-group">
+              {/* <label className="modal-label">Stage Name</label> */}
+              <input
+                type="password"
+                className="modal-input password-input validate-input"
+                placeholder="Validate"
+                required
+              />
+            </div>
+
+            <div className="break">
+              <p>optional</p>
+            </div>
+
+            <div className="modal-form-group text-group first-name-group">
+              {/* <label className="modal-label">Stage Name</label> */}
+              <input
+                type="text"
+                className="modal-input first-name-input"
+                placeholder="First Name"
+                required
+              />
+            </div>
+
+            <div className="modal-form-group text-group last-name-group">
+              {/* <label className="modal-label">Stage Name</label> */}
+              <input
+                type="text"
+                className="modal-input last-name-input"
+                placeholder="Last Name"
+                required
+              />
+            </div>
+            {/* <div className="modal-form-group text-group stage-name-group">
+              <label className="modal-label">Stage Name</label>
+              <input
+                type="text"
+                className="modal-input stage-name-input"
+                placeholder="Stage Name"
+                required
+              />
+            </div> */}
+          </form>
+
+          <div className="button-div">
+            <button className="modal-button" onClick={() => handleSubmit}>
+              Register
+            </button>
+            <button
+              className="modal-button"
+              onClick={() => navigate("/welcome")}
+            >
+              Go Back
+            </button>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
