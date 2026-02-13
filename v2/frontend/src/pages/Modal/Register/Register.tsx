@@ -7,7 +7,7 @@ import "../Modal.css";
 export const Register: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [passCheck, setPassCheck] = useState<string>("");
+  const [validate, setValidate] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [stageName, setStageName] = useState<string>("");
@@ -22,7 +22,7 @@ export const Register: React.FC = () => {
     setLoading(true);
 
     try {
-      await register(email, password, firstName, lastName);
+      await register(email, password, firstName, lastName, stageName);
       navigate("/on-deck");
     } catch (err: any) {
       setError(err.message || "Failed to Register");
@@ -44,6 +44,8 @@ export const Register: React.FC = () => {
                 type="email"
                 className="modal-input email-input"
                 placeholder="Email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
@@ -54,6 +56,8 @@ export const Register: React.FC = () => {
                 type="password"
                 className="modal-input password-input"
                 placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 required
               />
             </div>
@@ -64,6 +68,8 @@ export const Register: React.FC = () => {
                 type="password"
                 className="modal-input password-input validate-input"
                 placeholder="Validate"
+                value={validate}
+                onChange={(e) => setValidate(e.target.value)}
                 required
               />
             </div>
@@ -78,6 +84,8 @@ export const Register: React.FC = () => {
                 type="text"
                 className="modal-input first-name-input"
                 placeholder="First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
                 required
               />
             </div>
@@ -88,18 +96,22 @@ export const Register: React.FC = () => {
                 type="text"
                 className="modal-input last-name-input"
                 placeholder="Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
                 required
               />
             </div>
-            {/* <div className="modal-form-group text-group stage-name-group">
-              <label className="modal-label">Stage Name</label>
+            <div className="modal-form-group text-group stage-name-group">
+              {/* <label className="modal-label">Stage Name</label> */}
               <input
                 type="text"
                 className="modal-input stage-name-input"
                 placeholder="Stage Name"
+                value={stageName}
+                onChange={(e) => setStageName(e.target.value)}
                 required
               />
-            </div> */}
+            </div>
           </form>
 
           <div className="button-div">

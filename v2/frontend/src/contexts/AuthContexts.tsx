@@ -12,6 +12,7 @@ interface AuthContextType {
     password: string,
     firstName?: string,
     lastName?: string,
+    stageName?: string,
   ) => Promise<void>;
   signOut: () => Promise<void>;
 }
@@ -48,6 +49,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     password: string,
     firstName?: string,
     lastName?: string,
+    stageName?: string,
   ) => {
     const { error } = await supabase.auth.signUp({
       email,
@@ -56,6 +58,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         data: {
           first_name: firstName || "",
           last_name: lastName || "",
+          stage_name: stageName || "",
         },
       },
     });
