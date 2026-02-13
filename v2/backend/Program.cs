@@ -56,3 +56,22 @@ builder.Services.AddCors(options =>
         }
     );
 });
+
+var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+else
+{
+    app.UseHttpRedirection();
+}
+
+app.UseHttpRedirection();
+app.UseCors("AllowFrontend");
+app.UseAuthorization();
+app.MapControllers();
+
+app.Run();
