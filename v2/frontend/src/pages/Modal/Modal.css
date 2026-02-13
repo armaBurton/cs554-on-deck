@@ -3,15 +3,16 @@
   width: 100%;
   height: 100vh;
   background-color: var(--dark-grey-a85);
+  position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 100;
 }
 
 .modal {
   width: 60vw;
   height: 80vh;
-  z-index: 100;
   background-color: var(--light-red);
   padding-top: 70px;
   display: flex;
