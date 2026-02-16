@@ -16,8 +16,8 @@ export const Register: React.FC = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
-    setError("");
+  const handleSubmit = async (e: React.SubmitEvent) => {
+    e.preventDefault();
     setLoading(true);
 
     if (password !== validate) {
@@ -29,11 +29,12 @@ export const Register: React.FC = () => {
 
     try {
       await register(email, password, firstName, lastName, stageName);
-      alert("Registering");
       navigate("/dashboard");
     } catch (err: any) {
-      setError(err.message || "Failed to Register");
+      setError(err.message || "Failed to register");
+      console.error("Registration error:", error);
     } finally {
+      alert("not registered!");
       setLoading(false);
     }
   };
@@ -44,7 +45,10 @@ export const Register: React.FC = () => {
         <div className="modal">
           <h1>On Deck</h1>
           <h3>Create an Account</h3>
-          <form className="modal-form" onSubmit={handleSubmit}>
+          <form
+            className="modal-form"
+            onSubmit={handleSubmit}
+          >
             <div className="modal-form-group email-group">
               {/* <label className="modal-label">First Name</label> */}
               <input
@@ -58,7 +62,6 @@ export const Register: React.FC = () => {
             </div>
 
             <div className="modal-form-group password-group">
-              {/* <label className="modal-label">Last Name</label> */}
               <input
                 type="password"
                 className="modal-input password-input"
@@ -70,7 +73,6 @@ export const Register: React.FC = () => {
             </div>
 
             <div className="modal-form-group password-group validate-group">
-              {/* <label className="modal-label">Stage Name</label> */}
               <input
                 type="password"
                 className="modal-input password-input validate-input"
@@ -86,7 +88,6 @@ export const Register: React.FC = () => {
             </div>
 
             <div className="modal-form-group text-group first-name-group">
-              {/* <label className="modal-label">Stage Name</label> */}
               <input
                 type="text"
                 className="modal-input first-name-input"
@@ -97,7 +98,6 @@ export const Register: React.FC = () => {
             </div>
 
             <div className="modal-form-group text-group last-name-group">
-              {/* <label className="modal-label">Stage Name</label> */}
               <input
                 type="text"
                 className="modal-input last-name-input"
@@ -107,7 +107,6 @@ export const Register: React.FC = () => {
               />
             </div>
             <div className="modal-form-group text-group stage-name-group">
-              {/* <label className="modal-label">Stage Name</label> */}
               <input
                 type="text"
                 className="modal-input stage-name-input"
@@ -118,7 +117,11 @@ export const Register: React.FC = () => {
             </div>
             <div className="button-div">
               {/* <button className="modal-button" onClick={() => handleSubmit()}> */}
-              <button className="modal-button" type="submit" disabled={loading}>
+              <button
+                className="modal-button"
+                type="submit"
+                disabled={loading}
+              >
                 {loading ? "Loading..." : "Register"}
               </button>
               <button
