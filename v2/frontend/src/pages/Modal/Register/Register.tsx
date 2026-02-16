@@ -16,8 +16,7 @@ export const Register: React.FC = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.SubmitEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setError("");
     setLoading(true);
 
@@ -123,8 +122,8 @@ export const Register: React.FC = () => {
           </form>
 
           <div className="button-div">
-            <button className="modal-button" onClick={() => handleSubmit}>
-              Register
+            <button className="modal-button" onClick={() => handleSubmit()}>
+              {loading ? "Loading..." : "Register"}
             </button>
             <button
               className="modal-button"
