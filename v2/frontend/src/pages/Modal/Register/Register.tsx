@@ -30,7 +30,8 @@ export const Register: React.FC = () => {
 
     try {
       await register(email, password, firstName, lastName, stageName);
-      navigate("/on-deck");
+      alert("Registering");
+      navigate("/dashboard");
     } catch (err: any) {
       setError(err.message || "Failed to Register");
     } finally {

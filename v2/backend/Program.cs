@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 DotNetEnv.Env.Load();
 
 builder.Services.AddControllers();
-builder.Services.AddEndPointsApiExplorer();
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "On Deck Supabase API", Version = "v1" });
@@ -28,10 +28,10 @@ builder.Services.AddSwaggerGen(c =>
             {
                 new OpenApiSecurityScheme
                 {
-                    References = new OpenApiReference
+                    Reference = new OpenApiReference
                     {
                         Type = ReferenceType.SecurityScheme,
-                        Id = Bearer,
+                        Id = "Bearer",
                     },
                 },
                 Array.Empty<string>()
@@ -40,7 +40,7 @@ builder.Services.AddSwaggerGen(c =>
     );
 });
 
-builder.Services.AddSingleton<ISupabaseServices, SupabaseServices>();
+builder.Services.AddSingleton<ISupabaseService, SupabaseService>();
 
 var allowedOrigins =
     builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>()
@@ -52,7 +52,7 @@ builder.Services.AddCors(options =>
         "AllowFrontend",
         policy =>
         {
-            policy.WithOrigins(allowedOrigins).ALlowAnyMethod().AllowAnyHeader().AllowCredentials();
+            policy.WithOrigins(allowedOrigins).AllowAnyMethod().AllowAnyHeader().AllowCredentials();
         }
     );
 });
@@ -66,10 +66,10 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    app.UseHttpRedirection();
+    app.UseHttpsRedirection();
 }
 
-app.UseHttpRedirection();
+app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
 app.UseAuthorization();
 app.MapControllers();

@@ -2,11 +2,11 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContexts";
 
-interface PrivateRoutesProps {
+interface PrivateRouteProps {
   children: React.ReactNode;
 }
 
-export const PrivateRoutes: React.FC<PrivateRoutesProps> = ({ children }) => {
+export const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const { user, loading } = useAuth();
 
   return (
@@ -16,7 +16,7 @@ export const PrivateRoutes: React.FC<PrivateRoutesProps> = ({ children }) => {
       ) : user ? (
         <>{children}</>
       ) : (
-        <Navigate to="/on-deck" />
+        <Navigate to="/welcome" />
       )}
     </>
   );
