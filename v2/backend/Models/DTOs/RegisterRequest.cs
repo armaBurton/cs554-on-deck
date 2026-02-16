@@ -1,5 +1,5 @@
 // Models/DTOs/RegisterRequests.cs
-namespace backend.Models.DTOs;
+namespace v2.backend.Models.DTOs;
 
 public class RegisterRequest
 {
