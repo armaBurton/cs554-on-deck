@@ -44,7 +44,7 @@ export const Register: React.FC = () => {
         <div className="modal">
           <h1>On Deck</h1>
           <h3>Create an Account</h3>
-          <form className="modal-form">
+          <form className="modal-form" onSubmit={handleSubmit}>
             <div className="modal-form-group email-group">
               {/* <label className="modal-label">First Name</label> */}
               <input
@@ -93,7 +93,6 @@ export const Register: React.FC = () => {
                 placeholder="First Name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                required
               />
             </div>
 
@@ -105,7 +104,6 @@ export const Register: React.FC = () => {
                 placeholder="Last Name"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
-                required
               />
             </div>
             <div className="modal-form-group text-group stage-name-group">
@@ -116,22 +114,21 @@ export const Register: React.FC = () => {
                 placeholder="Stage Name"
                 value={stageName}
                 onChange={(e) => setStageName(e.target.value)}
-                required
               />
             </div>
+            <div className="button-div">
+              {/* <button className="modal-button" onClick={() => handleSubmit()}> */}
+              <button className="modal-button" type="submit" disabled={loading}>
+                {loading ? "Loading..." : "Register"}
+              </button>
+              <button
+                className="modal-button"
+                onClick={() => navigate("/welcome")}
+              >
+                Go Back
+              </button>
+            </div>
           </form>
-
-          <div className="button-div">
-            <button className="modal-button" onClick={() => handleSubmit()}>
-              {loading ? "Loading..." : "Register"}
-            </button>
-            <button
-              className="modal-button"
-              onClick={() => navigate("/welcome")}
-            >
-              Go Back
-            </button>
-          </div>
         </div>
       </section>
     </>

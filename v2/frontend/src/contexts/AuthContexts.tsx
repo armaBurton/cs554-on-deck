@@ -14,6 +14,7 @@ interface AuthContextType {
     lastName?: string,
     stageName?: string,
   ) => Promise<void>;
+  validate: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -66,13 +67,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     if (error) throw error;
   };
 
+  const validate = async (email: string, password: string) => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    if (error) throw error;
+  };
+
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
   };
 
   return (
-    <AuthContext.Provider value={{ user, session, loading, register, signOut }}>
+    <AuthContext.Provider
+      value={{ user, session, loading, register, validate, signOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

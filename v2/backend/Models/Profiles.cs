@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
+using Column = Supabase.Postgrest.Attributes.ColumnAttribute;
 
 namespace backend.Models;
 
@@ -20,10 +21,10 @@ public class Profile : BaseModel
     public string? LastName { get; set; }
 
     [Column("stage_name")]
-    public string? stage_name { get; set; }
+    public string? StageName { get; set; }
 
     [Column("email")]
-    public stringEmail value_name { get; set; } = string.Empty();
+    public string Email { get; set; } = string.Empty;
 
     [Column("create_at")]
     public DateTime CreatedAt { get; set; }

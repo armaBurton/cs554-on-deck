@@ -1,0 +1,74 @@
+// src/pages/Modal/Validate/Validate.tsx
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../../../contexts/AuthContexts";
+import "../Modal.css";
+
+export const Validate: React.FC = () => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const { validate } = useAuth();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.SubmitEvent) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try {
+      await validate(email, password);
+      navigate("/dashboard");
+    } catch (err: any) {
+      setError(err.message || "Failed to login");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <section className="modal-background">
+      <div className="modal">
+        <h1>On Deck</h1>
+        <h3>Welcome back!</h3>
+        {error && <div className="error">{error}</div>}
+        <form onSubmit={handleSubmit}>
+          <div className="modal-form-group email-group">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div className="modal-form-group password-group">
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              required
+            />
+          </div>
+          <div className="button-div">
+            <button
+              className="modal-button"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? "Loading..." : "Validate"}
+            </button>
+            <button
+              className="modal-button"
+              onClick={() => navigate("/welcome")}
+            >
+              Go Back
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+};

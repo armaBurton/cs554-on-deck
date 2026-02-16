@@ -12,14 +12,18 @@ export const Welcome: React.FC = () => {
           <h1>On Deck</h1>
           <h3>Select a login method</h3>
           <div className="button-div">
-            <button className="modal-button">Sign In</button>
+            <button
+              className="modal-button"
+              onClick={() => navigate("/validate")}
+            >
+              Returning
+            </button>
             <button
               className="modal-button"
               onClick={() => navigate("/register")}
             >
-              Register
+              New
             </button>
-            <button className="modal-button">Google</button>
           </div>
         </div>
       </section>
