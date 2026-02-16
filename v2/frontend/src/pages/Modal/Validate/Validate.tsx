@@ -58,7 +58,7 @@ export const Validate: React.FC = () => {
               type="submit"
               disabled={loading}
             >
-              {loading ? "Loading..." : "Validate"}
+              {loading ? "Loading..." : "Enter Venue"}
             </button>
             <button
               className="modal-button"

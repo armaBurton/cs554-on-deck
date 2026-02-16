@@ -16,13 +16,13 @@ export const Welcome: React.FC = () => {
               className="modal-button"
               onClick={() => navigate("/validate")}
             >
-              Returning
+              Returning Artist
             </button>
             <button
               className="modal-button"
               onClick={() => navigate("/register")}
             >
-              New
+              New Performer
             </button>
           </div>
         </div>
