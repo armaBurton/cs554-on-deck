@@ -1,0 +1,12 @@
+/* src/pages/Profile/Profile.css */
+.profile-section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile-div {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+}

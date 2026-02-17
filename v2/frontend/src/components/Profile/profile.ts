@@ -1,17 +1,25 @@
+import { data } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContexts";
 import { supabase } from "../../lib/supabase";
 
-export const loadProfile = (user: any) => {
+export const loadProfile = async (user) => {
   try {
-    const { data: profileData, error: profileError } = supabase
+    const { data: profileData, error: profileError } = await supabase
       .from("profiles")
       .select("*")
       .eq("id", user!.id)
       .single();
 
     if (profileError) throw profileError;
-    return profileData;
+
+    // setProfile(profileData);
+    // setFirstName(profileData.first_name || "");
+    // setLastName(profileData.last_name || "");
+    // setStageName(profileData.stage_name || "");
+    return { profileData };
   } catch (err) {
     console.error("Error loading profile:", err);
   }
 };
+
+export const updateProfile = async (user, firstName, lastName, stageName) => {};

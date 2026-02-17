@@ -15,17 +15,26 @@
 }
 
 body {
-  background-color: var(--red);
+  background-color: var(--light-red);
 }
 
 button {
+  background-color: var(--red);
+  width: 120px;
+  height: 30px;
   cursor: pointer;
   border-radius: 5px;
-  box-shadow: 3px 3px 1px;
+  box-shadow: 3px 3px 3px;
 }
 
 button:active {
-  box-shadow: 1px 1px 3px;
+  box-shadow: 1px 1px 1px;
+}
+
+.main {
+  width: 100%;
+  height: calc(100vh - 50px);
+  padding-top: 50px;
 }
 
 /* a {
