@@ -1,19 +1,16 @@
 // src/components/Hamburger/Hamburger.tsx
 import React, { useState } from "react";
+import { Squash as Hamburger } from "hamburger-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContexts";
-import "./Hamburger.css";
+import "./HamburgerMenu.css";
 // import type { HamburgerProps } from "../../types/types";
 
-export const Hamburger: React.FC = () => {
+export const HamburgerMenu: React.FC = () => {
   const { user, signOut } = useAuth();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const navigate = useNavigate();
-
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
 
   const handleSignOut = async () => {
     await signOut();
@@ -22,15 +19,10 @@ export const Hamburger: React.FC = () => {
 
   return (
     <div className="hamburger-container">
-      <button
-        className="hamburger-icon"
-        onClick={handleClick}
-      >
-        <div className={`bar ${isOpen ? "open" : ""}`} />
-        <div className={`bar ${isOpen ? "open" : ""}`} />
-        <div className={`bar ${isOpen ? "open" : ""}`} />
-      </button>
-
+      <Hamburger
+        toggled={isOpen}
+        toggle={setIsOpen}
+      />
       <nav className={`menu ${isOpen ? "open" : ""}`}>
         <ul>
           <li>

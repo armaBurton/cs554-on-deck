@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth } from "../../contexts/AuthContexts";
 import { Navigate, useNavigate } from "react-router-dom";
-import { Hamburger } from "../Hamburger/Hamburger";
+import { HamburgerMenu } from "../HamburgerMenu/HamburgerMenu";
 import "./NavStatus.css";
 
 export const NavStatus: React.FC = () => {
@@ -16,14 +16,7 @@ export const NavStatus: React.FC = () => {
   return (
     <div className="nav-div">
       <p className="nav-user">{user?.email}</p>
-      {user ? (
-        // <p className="nav-logout" onClick={handleSignOut}>
-        //   logout
-        // </p>
-        <Hamburger />
-      ) : (
-        <Navigate to="/welcome" />
-      )}
+      {user ? <HamburgerMenu /> : <Navigate to="/welcome" />}
     </div>
   );
 };
