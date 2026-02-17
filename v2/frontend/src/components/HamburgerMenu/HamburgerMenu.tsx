@@ -15,6 +15,17 @@ export const HamburgerMenu: React.FC = () => {
   const handleSignOut = async () => {
     await signOut();
     navigate("/welcome");
+    setIsOpen(false);
+  };
+
+  const handleDashboard = () => {
+    navigate("/dashboard");
+    setIsOpen(false);
+  };
+
+  const handleProfile = () => {
+    navigate("/profile");
+    setIsOpen(false);
   };
 
   return (
@@ -26,10 +37,20 @@ export const HamburgerMenu: React.FC = () => {
       <nav className={`menu ${isOpen ? "open" : ""}`}>
         <ul>
           <li>
-            <a href="#"></a>
+            <a
+              href="#"
+              onClick={handleDashboard}
+            >
+              Dashboard
+            </a>
           </li>
           <li>
-            <a href="#"></a>Profile
+            <a
+              href="#"
+              onClick={handleProfile}
+            >
+              Profile
+            </a>
           </li>
           <li>
             <a

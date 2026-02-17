@@ -13,6 +13,8 @@ import { Register } from "./pages/Modal/Register/Register";
 import { Validate } from "./pages/Modal/Validate/Validate";
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import { Profile } from "./pages/Profile/Profile";
+import { NavStatus } from "./components/NavStatus/NavStatus.tsx";
 import "./App.css";
 
 function App() {
@@ -36,7 +38,17 @@ function App() {
             path="/dashboard"
             element={
               <PrivateRoute>
+                <NavStatus />
                 <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <NavStatus />
+                <Profile />
               </PrivateRoute>
             }
           />

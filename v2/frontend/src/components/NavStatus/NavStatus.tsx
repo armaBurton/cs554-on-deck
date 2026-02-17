@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "../../contexts/AuthContexts";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { HamburgerMenu } from "../HamburgerMenu/HamburgerMenu";
+import { loadProfile } from "../Profile/profile";
 import "./NavStatus.css";
 
 export const NavStatus: React.FC = () => {
-  const { user, signOut } = useAuth();
-  const navigate = useNavigate();
+  const { user } = useAuth();
 
-  // const handleSignOut = async () => {
-  //   await signOut();
-  //   navigate("/welcome");
-  // };
+  console.log(user);
+  const profile = user?.identities?.[0]?.identity_data || null;
+  console.log(profile);
+
+  if (!user) <Navigate to="/welcome" />;
 
   return (
     <div className="nav-div">
-      <p className="nav-user">{user?.email}</p>
+      <p className="nav-user">{user ? user?.email : ""}</p>
       {user ? <HamburgerMenu /> : <Navigate to="/welcome" />}
     </div>
   );
