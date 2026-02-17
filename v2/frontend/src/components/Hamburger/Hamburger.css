@@ -1,0 +1,72 @@
+/* src/components/Hamburger/Hamburger.css */
+/* src/components/HamburgerMenu.css */
+.hamburger-container {
+  position: relative;
+}
+
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 24px;
+  width: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+
+.bar {
+  width: 30px;
+  height: 3px;
+  background-color: #333;
+  transition: all 0.3s linear;
+  transform-origin: 1px; /* Needed for rotation */
+}
+
+/* Transform the bars into an 'X' when open */
+.bar:nth-child(1).open {
+  transform: rotate(45deg);
+}
+
+.bar:nth-child(2).open {
+  opacity: 0; /* Hide the middle bar */
+}
+
+.bar:nth-child(3).open {
+  transform: rotate(-45deg);
+}
+
+/* Menu styling */
+.menu {
+  display: none; /* Hide by default */
+  position: absolute;
+  right: 0;
+  top: 100%; /* Position below the button */
+  width: 200px;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 5;
+}
+
+.menu.open {
+  display: block; /* Show when open */
+}
+
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li a {
+  display: block;
+  padding: 12px 16px;
+  text-decoration: none;
+  color: #333;
+}
+
+.menu li a:hover {
+  background-color: #ddd;
+}

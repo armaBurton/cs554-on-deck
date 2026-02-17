@@ -14,13 +14,6 @@ export const Dashboard: React.FC = () => {
   return (
     <div className="dashboard">
       <NavStatus />
-      <h1>Dashboard</h1>
-      <p>
-        Welcome,{" "}
-        {user?.identities?.[0]?.identity_data?.first_name || user?.email}
-      </p>
-      {/* <button onClick={() => navigate("/profile")}>View Profile</button>
-      <button onClick={handleSignOut}>Sign Out</button> */}
     </div>
   );
 };
