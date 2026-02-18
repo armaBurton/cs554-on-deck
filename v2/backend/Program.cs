@@ -1,4 +1,5 @@
 // Program.cs
+using backend.Models.DTOs;
 using backend.Services;
 using Microsoft.OpenApi.Models;
 

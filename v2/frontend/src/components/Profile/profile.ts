@@ -22,4 +22,21 @@ export const loadProfile = async (user) => {
   }
 };
 
-export const updateProfile = async (user, firstName, lastName, stageName) => {};
+export const updateProfile = async (user, firstName, lastName, stageName) => {
+  try {
+    const { error } = await supabase
+      .from("profiles")
+      .update({
+        first_name: firstName,
+        last_name: lastName,
+        stage_name: stageName,
+      })
+      .eq("id", user!.id);
+
+    if (error) throw error;
+
+    loadProfile(user);
+  } catch (err) {
+    console.error("Error updating profile:", err);
+  }
+};

@@ -9,7 +9,8 @@
   --light-red: hsl(8 100% 85%);
   --green: hsl(111 100% 51%);
   --blue: hsl(184 100% 50%);
-  --grey: hsl(0, 0%, 35%);
+  --light-grey: hsl(0, 0%, 70%);
+  --grey: hsl(0, 0%, 40%);
   --dark-grey: hsl(0, 0%, 15%);
   --dark-grey-a85: hsla(0, 0%, 15%, 0.85);
 }

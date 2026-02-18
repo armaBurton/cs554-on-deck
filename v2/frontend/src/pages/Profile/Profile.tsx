@@ -35,57 +35,78 @@ export const Profile: React.FC = () => {
 
   const handleUpdate = async (e: React.SubmitEvent) => {
     e.preventDefault();
-    setUpdating(true);
-    setProfile(await updateProfile(user, firstName, lastName, stageName));
+    setLoading(true);
+    console.log("Updating profile with:", { firstName, lastName, stageName });
+    const profile = await updateProfile(user, firstName, lastName, stageName);
 
-    setUpdating(false);
+    console.log("Profile updated:", profile);
+    setLoading(false);
   };
 
   return (
     <section className="profile-section main">
       <div className="profile-div">
-        {!updating ? (
+        {loading ? (
+          "Loading..."
+        ) : !updating ? (
           <>
-            <h1>Profile</h1>
-            <p className="name-text first-name">
-              {firstName ? firstName : "First Name"}
-            </p>
-            <p className="name-text second-name">
-              {lastName ? lastName : "Last Name"}
-            </p>
-            <p className="name-text third-name">
-              {stageName ? stageName : "Stage Name"}
-            </p>
+            <div className="fake-form update-form">
+              <h1>Profile</h1>
+              <div className="name-div">
+                <p className="profile-name-text first-name profile-text names">
+                  {firstName ? firstName : "First Name"}
+                </p>
+                <p className="profile-name-text last-name profile-text names">
+                  {lastName ? lastName : "Last Name"}
+                </p>
+              </div>
+              <p className="profile-name-text stage-name profile-text">
+                {stageName ? stageName : "Stage Name"}
+              </p>
+            </div>
             <div className="button-div">
               <button onClick={() => setUpdating(true)}>Update</button>
-              <button>Go Back</button>
+              <button onClick={() => navigate("/dashboard")}>Dashboard</button>
             </div>
           </>
         ) : (
           <>
-            <form onSubmit={handleUpdate}>
+            <form
+              className="profile-form update-form"
+              onSubmit={handleUpdate}
+            >
               <h1>Profile</h1>
-              <input
-                type="text"
-                value={firstName}
-                placeholder="First Name"
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-              <input
-                type="text"
-                value={lastName}
-                placeholder="Last Name"
-                onChange={(e) => setLastName(e.target.value)}
-              />
+              <div className="name-div">
+                <input
+                  type="text"
+                  value={firstName}
+                  placeholder={firstName ? firstName : "First Name"}
+                  className="profile-name-input first-name profile-text names"
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+                <input
+                  type="text"
+                  value={lastName}
+                  placeholder={lastName ? lastName : "Last Name"}
+                  className="profile-name-input last-name profile-text names"
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </div>
               <input
                 type="text"
                 value={stageName}
-                placeholder="Stage Name"
+                placeholder={stageName ? stageName : "Stage Name"}
+                className="profile-name-input stage-name profile-text"
                 onChange={(e) => setStageName(e.target.value)}
               />
             </form>
             <div className="button-div">
-              <button>Save</button>
+              <button
+                type="submit"
+                onClick={() => setUpdating(false)}
+              >
+                Save
+              </button>
               <button onClick={() => setUpdating(false)}>Cancel</button>
             </div>
           </>
