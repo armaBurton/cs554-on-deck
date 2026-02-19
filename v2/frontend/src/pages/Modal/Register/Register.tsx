@@ -1,7 +1,7 @@
 // src/pages/SignUp/SignUp.tsx
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { useAuth } from "../../../contexts/AuthContexts";
+import { useNavigate } from "react-router-dom";
 import "../Modal.css";
 
 export const Register: React.FC = () => {
@@ -82,7 +82,7 @@ export const Register: React.FC = () => {
               />
             </div>
 
-            <div className="break">
+            {/* <div className="break">
               <p>optional</p>
             </div>
 
@@ -113,9 +113,8 @@ export const Register: React.FC = () => {
                 value={stageName}
                 onChange={(e) => setStageName(e.target.value)}
               />
-            </div>
+            </div> */}
             <div className="button-div">
-              {/* <button className="modal-button" onClick={() => handleSubmit()}> */}
               <button
                 className="modal-button"
                 type="submit"
@@ -125,9 +124,9 @@ export const Register: React.FC = () => {
               </button>
               <button
                 className="modal-button"
-                onClick={() => navigate("/welcome")}
+                onClick={() => navigate("/validate")}
               >
-                Go Back
+                Log in
               </button>
             </div>
           </form>

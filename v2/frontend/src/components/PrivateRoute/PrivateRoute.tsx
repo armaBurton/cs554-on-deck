@@ -16,7 +16,7 @@ export const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
       ) : user ? (
         <>{children}</>
       ) : (
-        <Navigate to="/welcome" />
+        <Navigate to="/validate" />
       )}
     </>
   );

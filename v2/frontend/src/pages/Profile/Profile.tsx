@@ -4,13 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
 import { useAuth } from "../../contexts/AuthContexts";
 import { loadProfile, updateProfile } from "../../components/Profile/profile";
+import type { ProfileType } from "../../interface/types";
 import "./Profile.css";
 import "../../index.css";
 
 export const Profile: React.FC = () => {
   const { user } = useAuth();
-  const [profile, setProfile] = useState<any>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [profile, setProfile] = useState<ProfileType | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [updating, setUpdating] = useState<boolean>(false);
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
@@ -19,6 +20,7 @@ export const Profile: React.FC = () => {
 
   useEffect(() => {
     if (user) {
+      console.log("Loading profile for user:", user);
       loadProfile(user);
     }
   }, []);

@@ -26,17 +26,18 @@ public class AuthController : ControllerBase
         {
             var client = await _supabaseService.GetClientAsync();
 
-            var options = new SignUpOptions
-            {
-                Data = new Dictionary<string, object>
-                {
-                    { "first_name", request.FirstName ?? string.Empty },
-                    { "last_name", request.LastName ?? string.Empty },
-                    { "stage_name", request.StageName ?? string.Empty },
-                },
-            };
+            // var options = new SignUpOptions
+            // {
+            //     Data = new Dictionary<string, object>
+            //     {
+            //         { "first_name", request.FirstName ?? string.Empty },
+            //         { "last_name", request.LastName ?? string.Empty },
+            //         { "stage_name", request.StageName ?? string.Empty },
+            //     },
+            // };
 
-            var session = await client.Auth.SignUp(request.Email, request.Password, options);
+            var session = await client.Auth.SignUp(request.Email, request.Password);
+            // var session = await client.Auth.SignUp(request.Email, request.Password, options);
 
             if (session?.User == null)
             {
@@ -59,6 +60,38 @@ public class AuthController : ControllerBase
         {
             _logger.LogError(ex, "Registration Error");
             return BadRequest(new { message = ex.Message });
+        }
+    }
+
+    [HttpPost("validate")]
+    public async Task<IActionResult> Validate([FromBody] LoginRequest req)
+    {
+        try
+        {
+            var client = await _supabaseService.GetClientAsync();
+            var session = await client.Auth.GetSessionAsync(req.Email, req.Password);
+
+            if (session?.User == null)
+            {
+                return Unauthorized(new { message = "Invalid credentials." });
+            }
+
+            return Ok(
+                new
+                {
+                    user = session.User,
+                    session = new
+                    {
+                        access_token = session.AccessToken,
+                        refresh_token = session.RefreshToken,
+                    },
+                }
+            );
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Validation Error");
+            return Unauthorized(new { message = ex.Message });
         }
     }
 }

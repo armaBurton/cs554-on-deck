@@ -22,10 +22,10 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route
+          {/* <Route
             path="/welcome"
             element={<Welcome />}
-          ></Route>
+          ></Route> */}
           <Route
             path="/register"
             element={<Register />}
@@ -54,7 +54,7 @@ function App() {
           />
           <Route
             path="/"
-            element={<Welcome />}
+            element={<Validate />}
           />
         </Routes>
       </BrowserRouter>

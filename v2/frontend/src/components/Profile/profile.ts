@@ -1,8 +1,9 @@
 import { data } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContexts";
 import { supabase } from "../../lib/supabase";
+import type { User } from "@supabase/supabase-js";
 
-export const loadProfile = async (user) => {
+export const loadProfile = async (user: User) => {
   try {
     const { data: profileData, error: profileError } = await supabase
       .from("profiles")
@@ -12,17 +13,18 @@ export const loadProfile = async (user) => {
 
     if (profileError) throw profileError;
 
-    // setProfile(profileData);
-    // setFirstName(profileData.first_name || "");
-    // setLastName(profileData.last_name || "");
-    // setStageName(profileData.stage_name || "");
     return { profileData };
   } catch (err) {
     console.error("Error loading profile:", err);
   }
 };
 
-export const updateProfile = async (user, firstName, lastName, stageName) => {
+export const updateProfile = async (
+  user: User,
+  firstName: string,
+  lastName: string,
+  stageName: string,
+) => {
   try {
     const { error } = await supabase
       .from("profiles")

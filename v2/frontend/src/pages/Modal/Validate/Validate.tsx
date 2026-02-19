@@ -1,8 +1,9 @@
 // src/pages/Modal/Validate/Validate.tsx
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContexts";
 import "../Modal.css";
+import "./Validate.css";
 
 export const Validate: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -52,6 +53,9 @@ export const Validate: React.FC = () => {
               required
             />
           </div>
+          <div className="modal-form-group password-group">
+            <input className="invisible" />
+          </div>
           <div className="button-div">
             <button
               className="modal-button"
@@ -62,9 +66,9 @@ export const Validate: React.FC = () => {
             </button>
             <button
               className="modal-button"
-              onClick={() => navigate("/welcome")}
+              onClick={() => navigate("/register")}
             >
-              Go Back
+              Sign Up
             </button>
           </div>
         </form>

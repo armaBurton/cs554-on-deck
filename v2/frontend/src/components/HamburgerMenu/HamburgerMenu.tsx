@@ -4,7 +4,6 @@ import { Squash as Hamburger } from "hamburger-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContexts";
 import "./HamburgerMenu.css";
-// import type { HamburgerProps } from "../../types/types";
 
 export const HamburgerMenu: React.FC = () => {
   const { user, signOut } = useAuth();
@@ -12,9 +11,11 @@ export const HamburgerMenu: React.FC = () => {
 
   const navigate = useNavigate();
 
+  if (!user) navigate("/validate");
+
   const handleSignOut = async () => {
     await signOut();
-    navigate("/welcome");
+    navigate("/validate");
     setIsOpen(false);
   };
 
