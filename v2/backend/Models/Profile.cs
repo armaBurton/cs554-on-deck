@@ -1,4 +1,4 @@
-// Models/Profiles.cs
+// Models/Profile.cs
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
@@ -12,7 +12,7 @@ namespace backend.Models;
 public class Profile : BaseModel
 {
     [PrimaryKey("id", false)]
-    public Guid ID { get; set; }
+    public Guid Id { get; set; }
 
     [Column("first_name")]
     public string? FirstName { get; set; }
@@ -26,7 +26,7 @@ public class Profile : BaseModel
     [Column("email")]
     public string Email { get; set; } = string.Empty;
 
-    [Column("create_at")]
+    [Column("created_at")]
     public DateTime CreatedAt { get; set; }
 
     [Column("updated_at")]

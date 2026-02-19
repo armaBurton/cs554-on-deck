@@ -1,5 +1,5 @@
 // Controllers/ProfileController.cs
-using backend.Models
+using backend.Models;
 using backend.Models.DTOs;
 using backend.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace backend.Controllers;
 
 [ApiController]
-[Route("api/[controller]")] 
+[Route("api/[controller]")]
 public class ProfileController : ControllerBase
 {
     private readonly ISupabaseService _supabaseService;
@@ -20,44 +20,152 @@ public class ProfileController : ControllerBase
         _logger = logger;
     }
 
-    [HttpPut("update")]
-    [Authorize]
+    private string? GetUserIdFromToken()
+    {
+        var authHeader = Request.Headers["Authorization"].FirstOrDefault();
+        if (string.IsNullOrEmpty(authHeader) || !authHeader.StartsWith("Bearer "))
+        {
+            return null;
+        }
+
+        var token = authHeader.Substring("Bearer ".Length).Trim();
+
+        try
+        {
+            var parts = token.Split('.');
+            if (parts.Length != 3)
+                return null;
+
+            var payload = parts[1];
+            var paddedPayload = payload.PadRight(
+                payload.Length + (4 - payload.Length % 4) % 4,
+                '='
+            );
+
+            var payloadBytes = Convert.FromBase64String(paddedPayload);
+            var payloadJson = System.Text.Encoding.UTF8.GetString(payloadBytes);
+
+            var json = System.Text.Json.JsonDocument.Parse(payloadJson);
+            return json.RootElement.GetProperty("sub").GetString();
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetProfile()
+    {
+        try
+        {
+            var userId = GetUserIdFromToken();
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized();
+
+            var client = await _supabaseService.GetClientAsync();
+            // var client = client.Auth.CurrentUser;
+            var profile = await client
+                .From<Profile>()
+                .Where(p => p.Id == Guid.Parse(userId))
+                .Single();
+
+            if (profile == null)
+                return NotFound();
+
+            var socials = await client
+                .From<Social>()
+                .Where(s => s.ProfileId == Guid.Parse(userId))
+                .Get();
+
+            return Ok(new { profile = socials.Models });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching profile");
+            return BadRequest(new { message = ex.Message });
+        }
+    }
+
+    [HttpPut]
     public async Task<IActionResult> UpdateProfile([FromBody] ProfileUpdateRequest request)
     {
         try
         {
+            var userId = GetUserIdFromToken();
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized();
+
             var client = await _supabaseService.GetClientAsync();
-            var user = client.Auth.User;
 
-            if (user == null)
+            var profile = new Profile
             {
-                return Unauthorized(new { message = "User not authenticated." });
-            }
+                Id = Guid.Parse(userId),
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                StageName = request.StageName,
+            };
 
-            var updates = new Dictionary<string, object>();
+            await client.From<Profile>().Update(profile);
 
-            if (!string.IsNullOrEmpty(request.FirstName))
-                updates["first_name"] = request.FirstName;
-
-            if (!string.IsNullOrEmpty(request.LastName))
-                updates["last_name"] = request.LastName;
-
-            if (!string.IsNullOrEmpty(request.StageName))
-                updates["stage_name"] = request.StageName;
-
-            if (updates.Count == 0)
-            {
-                return BadRequest(new { message = "No valid fields to update." });
-            }
-
-            var updatedUser = await client.Auth.Update(updates);
-
-            return Ok(new { user = updatedUser });
+            return Ok(new { message = "Profile updated successfully" });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating profile.");
-            return StatusCode(500, new { message = "An error occurred while updating the profile." });
+            _logger.LogError(ex, "Error updating profile");
+            return BadRequest(new { message = ex.Message });
         }
     }
+
+    // [HttpPost("socials")]
+    // public async Task<IActionResult> AddSocial([FromBody] SocialRequest request)
+    // {
+    //     try
+    //     {
+    //         var userId = GetUserIdFromToken();
+    //         if (string.IsNullOrEmpty(userId))
+    //             return Unauthorized();
+
+    //         var client = await _supabaseService.GetClientAsync();
+
+    //         var social = new Social
+    //         {
+    //             ProfileId = Guid.Parse(userId),
+    //             Platform = request.Platform,
+    //             Url = request.Url,
+    //         };
+
+    //         var result = await client.From<Social>().Insert(social);
+    //         return Ok(result.Models.FirstOrDefault());
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         _logger.LogError(ex, "Error adding social");
+    //         return BadRequest(new { message = ex.Message });
+    //     }
+    // }
+
+    // [HttpDelete("socials/{id}")]
+    // public async Task<IActionResult> DeleteSocial(Guid id)
+    // {
+    //     try
+    //     {
+    //         var userId = GetUserIdFromToken();
+    //         if (string.IsNullOrEmpty(userId))
+    //             return Unauthorized();
+
+    //         var client = await _supabaseService.GetClientAsync();
+    //         await client
+    //             .From<Social>()
+    //             .Where(s => s.Id == id && s.ProfileId == Guid.Parse(userId))
+    //             .Delete();
+
+    //         return Ok(new { message = "Social deleted successfully" });
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         _logger.LogError(ex, "Error deleting social");
+    //         return BadRequest(new { message = ex.Message });
+    //     }
+    // }
 }
