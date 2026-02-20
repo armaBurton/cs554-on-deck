@@ -6,4 +6,5 @@ public class ProfileUpdateRequest
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
     public string? StageName { get; set; }
+    public DateTime UpdatedAt { get; set; } = DateTime.Now;
 };

@@ -62,13 +62,13 @@ export const Validate: React.FC = () => {
               type="submit"
               disabled={loading}
             >
-              {loading ? "Loading..." : "Enter Venue"}
+              {loading ? "Loading..." : "Enter"}
             </button>
             <button
               className="modal-button"
               onClick={() => navigate("/register")}
             >
-              Sign Up
+              Register
             </button>
           </div>
         </form>

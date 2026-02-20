@@ -39,9 +39,10 @@ export const Profile: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     console.log("Updating profile with:", { firstName, lastName, stageName });
-    const profile = await updateProfile(user, firstName, lastName, stageName);
+    const profile = await updateProfile(firstName, lastName, stageName);
 
     console.log("Profile updated:", profile);
+    setUpdating(false);
     setLoading(false);
   };
 
@@ -103,12 +104,7 @@ export const Profile: React.FC = () => {
               />
             </form>
             <div className="button-div">
-              <button
-                type="submit"
-                onClick={() => setUpdating(false)}
-              >
-                Save
-              </button>
+              <button type="submit">Save</button>
               <button onClick={() => setUpdating(false)}>Cancel</button>
             </div>
           </>

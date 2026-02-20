@@ -23,6 +23,9 @@ public class Profile : BaseModel
     [Column("stage_name")]
     public string? StageName { get; set; }
 
+    [Column("full_name")]
+    public string? FullName { get; set; }
+
     [Column("email")]
     public string Email { get; set; } = string.Empty;
 

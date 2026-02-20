@@ -1,5 +1,3 @@
-import { data } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContexts";
 import { supabase } from "../../lib/supabase";
 import type { User } from "@supabase/supabase-js";
 
@@ -20,7 +18,6 @@ export const loadProfile = async (user: User) => {
 };
 
 export const updateProfile = async (
-  user: User,
   firstName: string,
   lastName: string,
   stageName: string,

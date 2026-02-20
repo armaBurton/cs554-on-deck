@@ -1,7 +1,13 @@
 // src/contexts/AuthContexts.tsx
-import React, { useState, useEffect, useContext, createContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  createContext,
+  useMemo,
+} from "react";
 import { supabase } from "../lib/supabase";
-import type { AuthContextType } from "../interface/types";
+import type { AuthContextType, ProfileType } from "../interface/types";
 import type { User, Session } from "@supabase/supabase-js";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -11,7 +17,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
+  const [profile, setProfile] = useState<ProfileType | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [stageName, setStageName] = useState<string>("");
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -61,18 +71,62 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     if (error) throw error;
   };
 
+  const handleProfileUpdate = async (
+    firstName: string,
+    lastName: string,
+    stageName: string,
+  ) => {
+    if (!user) throw new Error("No user logged in");
+    const { error } = await supabase.from("profiles").upsert({
+      id: user.id,
+      first_name: firstName,
+      last_name: lastName,
+      stage_name: stageName,
+    });
+    if (error) throw error;
+    setProfile((prev) =>
+      prev
+        ? {
+            ...prev,
+            first_name: firstName,
+            last_name: lastName,
+            stage_name: stageName,
+          }
+        : null,
+    );
+  };
+
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
   };
 
-  return (
-    <AuthContext.Provider
-      value={{ user, session, loading, register, validate, signOut }}
-    >
-      {children}
-    </AuthContext.Provider>
+  const value = useMemo<AuthContextType>(
+    () => ({
+      user,
+      setUser,
+      session,
+      setSession,
+      profile,
+      setProfile,
+      loading,
+      setLoading,
+      firstName,
+      setFirstName,
+      lastName,
+      setLastName,
+      stageName,
+      setStageName,
+      // Methods
+      register,
+      validate,
+      handleProfileUpdate,
+      signOut,
+    }),
+    [user, session, profile, loading, firstName, lastName, stageName],
   );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
