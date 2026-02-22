@@ -62,6 +62,8 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
     async (firstName: string, lastName: string, stageName: string) => {
       if (!user) throw new Error("No user logged in");
 
+      console.log("updating profile");
+
       const { error } = await supabase.from("profiles").upsert({
         id: user.id,
         first_name: firstName,
@@ -94,11 +96,3 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
     <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
   );
 };
-
-// export const useProfile = () => {
-//   const context = useContext(ProfileContext);
-
-//   if (!context)
-//     throw new Error("useProfile must be used within a ProfileProvider");
-//   return context;
-// };

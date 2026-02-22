@@ -21,6 +21,10 @@ export const Static: React.FC = ({
       <p className="profile-name-text stage-name profile-text">
         {stageName ? stageName : "Stage Name"}
       </p>
+      <div className="button-div">
+        <button onClick={() => setUpdating(true)}>Update</button>
+        <button onClick={() => navigate("/dashboard")}>Dashboard</button>
+      </div>
     </div>
   );
 };

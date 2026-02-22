@@ -6,7 +6,7 @@ import React, {
   useMemo,
   createContext,
 } from "react";
-import { supabase } from "";
+import { supabase } from "../lib/supabase";
 import { useAuth } from "./AuthContexts";
 import type { ProfileType } from "../interface/types";
 
