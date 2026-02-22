@@ -43,4 +43,47 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
     return () => subscription.unsubscribe();
   }, []);
+
+  const register = async (email: string, password: string) => {
+    const { error } = await supabase.auth.signUp({ email, password });
+
+    if (error) throw error;
+  };
+
+  const validate = async (email: string, password: string) => {
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) throw error;
+  };
+
+  const signOut = async () => {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) throw error;
+  };
+
+  const value = useMemo(
+    () => ({
+      user,
+      session,
+      loading,
+      register,
+      validate,
+      signOut,
+    }),
+    [user, session, loading],
+  );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};
+
+export const useAuth = () => {
+  const context = useContext(AuthContext);
+
+  if (!context) throw new Error("useAuth must be used within an AuthProvider");
+
+  return context;
 };

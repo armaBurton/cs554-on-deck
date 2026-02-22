@@ -2,15 +2,16 @@
 import React, {
   useState,
   useEffect,
-  useCallback,
+  useContext,
   useMemo,
   createContext,
+  useCallback,
 } from "react";
-import { supabase } from "";
+import { supabase } from "../lib/supabase";
 import { useAuth } from "./AuthContexts";
 import type { ProfileType } from "../interface/types";
 
-interface ProfileContextType {
+export interface ProfileContextType {
   profile: ProfileType | null;
   loading: boolean;
   updateProfile: (
@@ -20,7 +21,9 @@ interface ProfileContextType {
   ) => Promise<void>;
 }
 
-const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
+export const ProfileContext = createContext<ProfileContextType | undefined>(
+  undefined,
+);
 
 export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -91,3 +94,11 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
     <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
   );
 };
+
+// export const useProfile = () => {
+//   const context = useContext(ProfileContext);
+
+//   if (!context)
+//     throw new Error("useProfile must be used within a ProfileProvider");
+//   return context;
+// };

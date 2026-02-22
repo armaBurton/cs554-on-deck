@@ -47,7 +47,7 @@ export interface AuthContextType {
   ) => Promise<void>;
 }
 
-export interface ProfileProps {
+export interface ProfileType {
   firstName?: string;
   lastName?: string;
   stageName?: string;
