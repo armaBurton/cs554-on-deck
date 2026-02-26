@@ -39,3 +39,46 @@ export interface ProfileContextType {
     stageName: string,
   ) => Promise<void>;
 }
+
+export interface EventContextType {
+  id: string;
+  setId: React.Dispatch<React.SetStateAction<string>>;
+  event: boolean;
+  setEvent: React.Dispatch<React.SetStateAction<boolean>>;
+  venue: string;
+  setVenue: React.Dispatch<React.SetStateAction<string>>;
+  street: string;
+  setStreet: React.Dispatch<React.SetStateAction<string>>;
+  city: string;
+  setCity: React.Dispatch<React.SetStateAction<string>>;
+  state: string;
+  setState: React.Dispatch<React.SetStateAction<string>>;
+  date: string;
+  setDate: React.Dispatch<React.SetStateAction<string>>;
+  signUpTime: number;
+  setSignUpTime: React.Dispatch<React.SetStateAction<number>>;
+  startTime: number;
+  setStartTime: React.Dispatch<React.SetStateAction<number>>;
+  stopTime: number;
+  setStopTime: React.Dispatch<React.SetStateAction<number>>;
+  resetEvent: () => void;
+  createEvent: (
+    id: string,
+    venue: string,
+    address: string,
+    date: Date,
+    signUp: number,
+    start: number,
+    stop: number,
+  ) => Promise<void>;
+  updateEvent: (
+    id: string,
+    venue?: string,
+    address?: string,
+    date?: Date,
+    signUp?: number,
+    start?: number,
+    stop?: number,
+  ) => Promise<void>;
+  deleteEvent: () => void;
+}

@@ -15,6 +15,7 @@ import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { Profile } from "./pages/Profile/Profile";
 import { NavStatus } from "./components/NavStatus/NavStatus.tsx";
+import "./index.css";
 import "./App.css";
 
 function App() {
