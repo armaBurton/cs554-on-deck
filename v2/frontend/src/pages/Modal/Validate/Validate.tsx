@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContexts";
 import { useProfile } from "../../../contexts/ProfileContexts";
+import { supabase } from "../../../lib/supabase";
 import "../Modal.css";
 import "./Validate.css";
 
@@ -15,13 +16,15 @@ export const Validate: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("profile");
+    const getTicket = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
 
-    if (storedUser) {
-      navigate("/dashboard");
-    }
+      if (session?.access_token) navigate("/dashboard");
+    };
 
-    console.log(storedUser);
+    getTicket();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

@@ -3,16 +3,20 @@ import React, { useEffect } from "react";
 import { useProfile } from "../../contexts/ProfileContexts";
 import { NavStatus } from "../../components/NavStatus/NavStatus";
 
-import "./Dashboard.css";
 import "../../index.css";
+import "./Dashboard.css";
 
 export const Dashboard: React.FC = () => {
   const { profile, setProfile } = useProfile();
 
-  console.log("dashboard");
+  console.log("/dashboard --> profile: ", profile);
   return (
     <>
-      <section className="dashboard-section main">Dashboard</section>;
+      <section className="main-dashboard main">
+        <div className="left-dashboard">LEFT</div>
+        <div className="right-dashboard">RIGHT</div>
+      </section>
+      ;
     </>
   );
 };

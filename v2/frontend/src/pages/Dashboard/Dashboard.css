@@ -1,3 +1,5 @@
-/* .dashboard {
-  padding-top: 50px;
-} */
+.main-dashboard {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
