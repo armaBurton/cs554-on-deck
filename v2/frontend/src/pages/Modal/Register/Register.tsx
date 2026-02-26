@@ -37,6 +37,7 @@ export const Register: React.FC = () => {
       setLoading(false);
     }
   };
+  console.log(`Register`);
 
   return (
     <>

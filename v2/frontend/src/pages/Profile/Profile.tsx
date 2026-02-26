@@ -29,7 +29,6 @@ export const Profile: React.FC = () => {
 
   useEffect(() => {
     if (user) {
-      console.log("Loading profile for user:", user);
       loadProfile(user);
     }
     setUpdating(false);
@@ -45,6 +44,8 @@ export const Profile: React.FC = () => {
     setNames();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile]);
+
+  console.log(`Profile-->updating: ${updating}`);
 
   return (
     <section className="profile-section main">

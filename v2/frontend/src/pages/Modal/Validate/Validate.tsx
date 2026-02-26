@@ -1,7 +1,8 @@
 // src/pages/Modal/Validate/Validate.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContexts";
+import { useProfile } from "../../../contexts/ProfileContexts";
 import "../Modal.css";
 import "./Validate.css";
 
@@ -12,6 +13,17 @@ export const Validate: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { validate } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("profile");
+
+    if (storedUser) {
+      navigate("/dashboard");
+    }
+
+    console.log(storedUser);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();

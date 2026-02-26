@@ -22,6 +22,7 @@ function App() {
     <AuthProvider>
       <ProfileProvider>
         <BrowserRouter>
+          <NavStatus />
           <Routes>
             <Route
               path="/register"
@@ -47,10 +48,7 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route
-              path="/update-profile"
-              element={<PrivateRoute>{/* <NavStatus /> */}</PrivateRoute>}
-            />
+
             <Route
               path="/"
               element={<Validate />}
