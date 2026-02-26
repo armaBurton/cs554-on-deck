@@ -13,7 +13,7 @@ import type { ProfileType } from "../interface/types";
 
 export interface ProfileContextType {
   profile: ProfileType | null;
-  loading: boolean;
+  updating: boolean;
   updateProfile: (
     firstName: string,
     lastName: string,
@@ -30,17 +30,17 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const { user } = useAuth();
   const [profile, setProfile] = useState<ProfileType | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
+  const [updating, setUpdating] = useState<boolean>(true);
 
   useEffect(() => {
     if (!user) {
       setProfile(null);
-      setLoading(false);
+      setUpdating(false);
       return;
     }
 
     const fetchProfile = async () => {
-      setLoading(true);
+      setUpdating(true);
 
       const { data, error } = await supabase
         .from("profiles")
@@ -52,7 +52,7 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
         setProfile(data);
       }
 
-      setLoading(false);
+      setUpdating(false);
     };
 
     fetchProfile();
@@ -86,13 +86,22 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
   const value = useMemo(
     () => ({
       profile,
-      loading,
+      updating,
       updateProfile,
     }),
-    [profile, loading, updateProfile],
+    [profile, updating, updateProfile],
   );
 
   return (
     <ProfileContext.Provider value={value}>{children}</ProfileContext.Provider>
   );
+};
+
+export const useProfile = () => {
+  const context = useContext(ProfileContext);
+
+  if (!context)
+    throw new Error("useProfile must be used within a ProfileProvider");
+
+  return context;
 };

@@ -1,5 +1,6 @@
 // src/components/Profile/Static.tsx
 import React from "react";
+import { useProfile } from "../../../contexts/ProfileContexts";
 import type { ProfileProps } from "../../../interface/types";
 
 export const Static: React.FC = ({
