@@ -1,5 +1,5 @@
 // src/types/types.ts
-import type { User, Session } from "@supabase/supabase-js";
+// import type { User, Session } from "@supabase/supabase-js";
 
 export interface ProfileType {
   id: string;
