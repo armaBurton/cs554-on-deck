@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContexts.tsx";
 import { ProfileProvider } from "./contexts/ProfileContexts.tsx";
+import { EventProvider } from "./contexts/EventContexts.tsx";
 
 import { Register } from "./pages/Modal/Register/Register";
 import { Validate } from "./pages/Modal/Validate/Validate";
@@ -22,40 +23,42 @@ function App() {
   return (
     <AuthProvider>
       <ProfileProvider>
-        <BrowserRouter>
-          <NavStatus />
-          <Routes>
-            <Route
-              path="/register"
-              element={<Register />}
-            />
-            <Route
-              path="/validate"
-              element={<Validate />}
-            />
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <PrivateRoute>
-                  <Profile />
-                </PrivateRoute>
-              }
-            />
+        <EventProvider>
+          <BrowserRouter>
+            <NavStatus />
+            <Routes>
+              <Route
+                path="/register"
+                element={<Register />}
+              />
+              <Route
+                path="/validate"
+                element={<Validate />}
+              />
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <Dashboard />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <PrivateRoute>
+                    <Profile />
+                  </PrivateRoute>
+                }
+              />
 
-            <Route
-              path="/"
-              element={<Validate />}
-            />
-          </Routes>
-        </BrowserRouter>
+              <Route
+                path="/"
+                element={<Validate />}
+              />
+            </Routes>
+          </BrowserRouter>
+        </EventProvider>
       </ProfileProvider>
     </AuthProvider>
   );

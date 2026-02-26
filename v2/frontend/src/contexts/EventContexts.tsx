@@ -33,16 +33,16 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
   const [stopTime, setStopTime] = useState<number>(0);
 
   const resetEvent = useCallback(() => {
-    // setId("");
-    // setEvent(false);
-    // setVenue("");
-    // setStreet("");
-    // setCity("");
-    // setState("");
-    // setDate("");
-    // setSignUpTime(0);
-    // setStartTime(0);
-    // setStopTime(0);
+    setId("");
+    setEvent(false);
+    setVenue("");
+    setStreet("");
+    setCity("");
+    setState("");
+    setDate("");
+    setSignUpTime(0);
+    setStartTime(0);
+    setStopTime(0);
   }, []);
 
   const createEvent = useCallback(async (data: EventPayload): Promise<void> => {
