@@ -1,0 +1,6 @@
+.event-creation-panel {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 5px;
+}

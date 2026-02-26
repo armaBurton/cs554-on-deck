@@ -1,7 +1,7 @@
 // src/pages/Dashboard/Dashboard.tsx
 import React, { useEffect } from "react";
 import { useProfile } from "../../contexts/ProfileContexts";
-import { NavStatus } from "../../components/NavStatus/NavStatus";
+import { Right_Dash } from "./Right_Dash/Right_Dash";
 
 import "../../index.css";
 import "./Dashboard.css";
@@ -14,7 +14,9 @@ export const Dashboard: React.FC = () => {
     <>
       <section className="main-dashboard main">
         <div className="left-dashboard">LEFT</div>
-        <div className="right-dashboard">RIGHT</div>
+        <div className="right-dashboard">
+          <Right_Dash />
+        </div>
       </section>
       ;
     </>

@@ -1,5 +1,23 @@
 .main-dashboard {
   width: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
   justify-content: space-evenly;
+  padding-left: 40px;
+  padding-right: 40px;
+  gap: 40px;
+  background-color: var(--red-a50);
+}
+
+.dash-text {
+  padding: 20px;
+  background-color: var(--red-a50);
+}
+
+.dash-emphasis {
+  font-weight: 900;
+}
+
+.text-bigger {
+  font-size: 2em;
 }

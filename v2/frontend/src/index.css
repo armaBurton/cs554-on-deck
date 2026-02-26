@@ -1,12 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght,XOPQ,XTRA,YOPQ,YTDE,YTFI,YTLC,YTUC@8..144,100..1000,96,468,79,-203,738,514,712&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
 * {
   border: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
 }
 
 :root {
   --red: hsl(8 100% 50%);
+  --red-a50: hsla(8, 100%, 50%, 0.5);
   --light-red: hsl(8 100% 85%);
+  --light-red-a50: hsla(8, 100%, 85%, 0.5);
   --green: hsl(111 100% 51%);
   --blue: hsl(184 100% 50%);
   --light-grey: hsl(0, 0%, 70%);
