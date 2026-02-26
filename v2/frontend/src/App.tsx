@@ -23,10 +23,6 @@ function App() {
       <ProfileProvider>
         <BrowserRouter>
           <Routes>
-            {/* <Route
-            path="/welcome"
-            element={<Welcome />}
-          ></Route> */}
             <Route
               path="/register"
               element={<Register />}
@@ -39,7 +35,6 @@ function App() {
               path="/dashboard"
               element={
                 <PrivateRoute>
-                  <NavStatus />
                   <Dashboard />
                 </PrivateRoute>
               }
@@ -48,10 +43,13 @@ function App() {
               path="/profile"
               element={
                 <PrivateRoute>
-                  <NavStatus />
                   <Profile />
                 </PrivateRoute>
               }
+            />
+            <Route
+              path="/update-profile"
+              element={<PrivateRoute>{/* <NavStatus /> */}</PrivateRoute>}
             />
             <Route
               path="/"

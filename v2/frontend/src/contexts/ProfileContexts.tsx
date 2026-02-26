@@ -10,17 +10,9 @@ import React, {
 import { supabase } from "../lib/supabase";
 import { useAuth } from "./AuthContexts";
 import type { ProfileType } from "../interface/types";
+import type { ProfileContextType } from "../interface/types";
 
-export interface ProfileContextType {
-  profile: ProfileType | null;
-  updating: boolean;
-  updateProfile: (
-    firstName: string,
-    lastName: string,
-    stageName: string,
-  ) => Promise<void>;
-}
-
+// eslint-disable-next-line react-refresh/only-export-components
 export const ProfileContext = createContext<ProfileContextType | undefined>(
   undefined,
 );
@@ -31,9 +23,13 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
   const { user } = useAuth();
   const [profile, setProfile] = useState<ProfileType | null>(null);
   const [updating, setUpdating] = useState<boolean>(true);
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [stageName, setStageName] = useState<string>("");
 
   useEffect(() => {
     if (!user) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setProfile(null);
       setUpdating(false);
       return;
@@ -66,6 +62,7 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
 
       const { error } = await supabase.from("profiles").upsert({
         id: user.id,
+        email: user.email,
         first_name: firstName,
         last_name: lastName,
         stage_name: stageName,
@@ -75,6 +72,7 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
 
       setProfile({
         id: user.id,
+        email: user.email,
         first_name: firstName,
         last_name: lastName,
         stage_name: stageName,
@@ -86,10 +84,30 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
   const value = useMemo(
     () => ({
       profile,
+      setProfile,
       updating,
+      setUpdating,
+      firstName,
+      setFirstName,
+      lastName,
+      setLastName,
+      stageName,
+      setStageName,
       updateProfile,
     }),
-    [profile, updating, updateProfile],
+    [
+      profile,
+      setProfile,
+      updating,
+      setUpdating,
+      firstName,
+      setFirstName,
+      lastName,
+      setLastName,
+      stageName,
+      setStageName,
+      updateProfile,
+    ],
   );
 
   return (
@@ -97,6 +115,7 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useProfile = () => {
   const context = useContext(ProfileContext);
 

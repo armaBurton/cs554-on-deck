@@ -1,19 +1,25 @@
 // src/components/Profile/Dynamic/Dynamic.tsx
 import React from "react";
-import type { ProfileProps } from "../../../interface/types";
-import { useAuth } from "../../../contexts/AuthContexts";
+import { useNavigate } from "react-router-dom";
+import { useProfile } from "../../../contexts/ProfileContexts";
 
-export const Dynamic: React.FC = ({
-  firstName,
-  lastName,
-  stageName,
-}: ProfileProps) => {
-  const { handleProfileUpdate, setFirstName, setLastName, setStageName } =
-    useAuth();
+export const Dynamic: React.FC = () => {
+  const {
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    stageName,
+    setStageName,
+    setUpdating,
+    updateProfile,
+  } = useProfile();
+  const navigate = useNavigate();
 
   const handleUpdate = async (e: React.SubmitEvent) => {
     e.preventDefault();
-    await handleProfileUpdate(firstName, lastName, stageName);
+    await updateProfile(firstName, lastName, stageName);
+    navigate("/dashboard");
   };
   return (
     <form
@@ -44,6 +50,15 @@ export const Dynamic: React.FC = ({
         className="profile-name-input stage-name profile-text"
         onChange={(e) => setStageName(e.target.value)}
       />
+      <div className="button-div">
+        <button
+          type="submit"
+          onClick={() => setUpdating(true)}
+        >
+          Save
+        </button>
+        <button onClick={() => navigate("/dashboard")}>Dashboard</button>
+      </div>
     </form>
   );
 };

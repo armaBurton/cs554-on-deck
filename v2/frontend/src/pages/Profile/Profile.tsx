@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
 import { useAuth } from "../../contexts/AuthContexts";
-import { useProfile } from "../../hooks/useProfle";
+import { useProfile } from "../../contexts/ProfileContexts";
 import { loadProfile } from "../../components/Profile/profile";
 import { Dynamic } from "../../components/Profile/Dynamic/Dynamic";
 import { Static } from "../../components/Profile/Static/Static";
@@ -11,13 +11,20 @@ import "../../index.css";
 import "./Profile.css";
 
 export const Profile: React.FC = () => {
-  const { user } = useAuth();
-  const { profile, updateProfile } = useProfile();
-  const [loading, setLoading] = useState<boolean>(false);
-  const [updating, setUpdating] = useState<boolean>(false);
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [stageName, setStageName] = useState<string>("");
+  const { user, loading, setLoading } = useAuth();
+  const {
+    profile,
+    setProfile,
+    updating,
+    setUpdating,
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    stageName,
+    setStageName,
+    updateProfile,
+  } = useProfile();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,6 +32,7 @@ export const Profile: React.FC = () => {
       console.log("Loading profile for user:", user);
       loadProfile(user);
     }
+    setUpdating(false);
   }, []);
 
   useEffect(() => {
@@ -35,85 +43,13 @@ export const Profile: React.FC = () => {
     };
 
     setNames();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile]);
-
-  const handleUpdate = async (e: React.SubmitEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    console.log("Updating profile with:", { firstName, lastName, stageName });
-    const profile = await updateProfile(firstName, lastName, stageName);
-
-    console.log("Profile updated:", profile);
-    setUpdating(false);
-    setLoading(false);
-  };
 
   return (
     <section className="profile-section main">
       <div className="profile-div">
-        {loading ? (
-          "Loading..."
-        ) : !updating ? (
-          <Static />
-        ) : (
-          // <>
-          //   <div className="fake-form update-form">
-          //     <h1>Profile</h1>
-          //     <div className="name-div">
-          //       <p className="profile-name-text first-name profile-text names">
-          //         {firstName ? firstName : "First Name"}
-          //       </p>
-          //       <p className="profile-name-text last-name profile-text names">
-          //         {lastName ? lastName : "Last Name"}
-          //       </p>
-          //     </div>
-          //     <p className="profile-name-text stage-name profile-text">
-          //       {stageName ? stageName : "Stage Name"}
-          //     </p>
-          //     <div className="button-div">
-          //       <button onClick={() => setUpdating(true)}>Update</button>
-          //       <button onClick={() => navigate("/dashboard")}>
-          //         Dashboard
-          //       </button>
-          //     </div>
-          //   </div>
-          // </>
-          <>
-            <form
-              className="profile-form update-form"
-              onSubmit={handleUpdate}
-            >
-              <h1>Profile</h1>
-              <div className="name-div">
-                <input
-                  type="text"
-                  value={firstName}
-                  placeholder={firstName ? firstName : "First Name"}
-                  className="profile-name-input first-name profile-text names"
-                  onChange={(e) => setFirstName(e.target.value)}
-                />
-                <input
-                  type="text"
-                  value={lastName}
-                  placeholder={lastName ? lastName : "Last Name"}
-                  className="profile-name-input last-name profile-text names"
-                  onChange={(e) => setLastName(e.target.value)}
-                />
-              </div>
-              <input
-                type="text"
-                value={stageName}
-                placeholder={stageName ? stageName : "Stage Name"}
-                className="profile-name-input stage-name profile-text"
-                onChange={(e) => setStageName(e.target.value)}
-              />
-              <div className="button-div">
-                <button type="submit">Save</button>
-                <button onClick={() => setUpdating(false)}>Cancel</button>
-              </div>
-            </form>
-          </>
-        )}
+        {loading ? "Loading..." : !updating ? <Static /> : <Dynamic />}
       </div>
     </section>
   );

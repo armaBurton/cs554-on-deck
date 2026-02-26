@@ -8,14 +8,7 @@ import React, {
 } from "react";
 import { supabase } from "../lib/supabase";
 import type { User, Session } from "@supabase/supabase-js";
-
-interface AuthContextType {
-  user: User | null;
-  session: Session | null;
-  loading: boolean;
-  register: (email: string, password: string) => Promise<void>;
-  signOut: () => Promise<void>;
-}
+import type { AuthContextType } from "../interface/authTypes";
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -68,13 +61,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const value = useMemo(
     () => ({
       user,
+      setUser,
       session,
+      setSession,
       loading,
+      setLoading,
       register,
       validate,
       signOut,
     }),
-    [user, session, loading],
+    [user, setUser, session, setSession, loading, setLoading],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

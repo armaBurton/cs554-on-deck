@@ -1,13 +1,21 @@
 // src/components/Profile/Static.tsx
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useProfile } from "../../../contexts/ProfileContexts";
-import type { ProfileProps } from "../../../interface/types";
 
-export const Static: React.FC = ({
-  firstName,
-  lastName,
-  stageName,
-}: ProfileProps) => {
+export const Static: React.FC = () => {
+  const {
+    updating,
+    setUpdating,
+    firstName,
+    setFirstName,
+    lastName,
+    setLastName,
+    stageName,
+    setStageName,
+  } = useProfile();
+  const navigate = useNavigate();
+
   return (
     <div className="fake-form update-form">
       <h1>Profile</h1>
