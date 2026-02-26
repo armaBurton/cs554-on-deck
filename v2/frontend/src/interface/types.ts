@@ -62,23 +62,17 @@ export interface EventContextType {
   stopTime: number;
   setStopTime: React.Dispatch<React.SetStateAction<number>>;
   resetEvent: () => void;
-  createEvent: (
-    id: string,
-    venue: string,
-    address: string,
-    date: Date,
-    signUp: number,
-    start: number,
-    stop: number,
-  ) => Promise<void>;
-  updateEvent: (
-    id: string,
-    venue?: string,
-    address?: string,
-    date?: Date,
-    signUp?: number,
-    start?: number,
-    stop?: number,
-  ) => Promise<void>;
+  createEvent: (data: EventPayload) => Promise<void>;
+  updateEvent: (data?: EventPayload) => Promise<void>;
   deleteEvent: () => void;
+}
+
+interface EventPayload {
+  id: string;
+  venue: string;
+  address: string;
+  date: Date;
+  signUpTime: number;
+  startTime: number;
+  stopTime: number;
 }

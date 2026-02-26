@@ -11,7 +11,7 @@ import { useAuth } from "./AuthContexts";
 import { useProfile } from "./ProfileContexts";
 import type { User, Session } from "@supabase/supabase-js";
 import type { ProfileType } from "../interface/types";
-import type { EventContextType } from "../interface/types";
+import type { EventContextType, EventPayload } from "../interface/types";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const EventContext = createContext<EventContextType | undefined>(
@@ -45,59 +45,67 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
     // setStopTime(0);
   }, []);
 
-  const createEvent = useCallback(
-    async ({
-      id,
-      venue,
-      street,
-      city,
-      state,
-      date,
-      signUpTime,
-      startTime,
-      stopTime,
-    }: EventContextType) => {
-      console.log(
-        id,
-        venue,
-        street,
-        city,
-        state,
-        date,
-        signUpTime,
-        startTime,
-        stopTime,
-      );
-    },
-    [],
-  );
+  const createEvent = useCallback(async (data: EventPayload): Promise<void> => {
+    const { id, venue, address, date, signUpTime, startTime, stopTime } = data;
+    console.log(id, venue, address, date, signUpTime, startTime, stopTime);
+  }, []);
 
-  const updateEvent = useCallback(
-    async ({
-      id,
-      venue,
-      street,
-      city,
-      state,
-      date,
-      signUpTime,
-      startTime,
-      stopTime,
-    }: EventContextType) => {
-      console.log(
-        id,
-        venue,
-        street,
-        city,
-        state,
-        date,
-        signUpTime,
-        startTime,
-        stopTime,
-      );
-    },
-    [],
-  );
+  // const createEvent = useCallback(
+  //   async ({
+  //     id,
+  //     venue,
+  //     street,
+  //     city,
+  //     state,
+  //     date,
+  //     signUpTime,
+  //     startTime,
+  //     stopTime,
+  //   }: EventPayload) => {
+  //     console.log(
+  //       id,
+  //       venue,
+  //       street,
+  //       city,
+  //       state,
+  //       date,
+  //       signUpTime,
+  //       startTime,
+  //       stopTime,
+  //     );
+  //   },
+  //   [],
+  // );
+  const updateEvent = useCallback(async (data: EventPayload): Promise<void> => {
+    const { id, venue, address, date, signUpTime, startTime, stopTime } = data;
+    console.log(id, venue, address, date, signUpTime, startTime, stopTime);
+  }, []);
+  // const updateEvent = useCallback(
+  //   async ({
+  //     id,
+  //     venue,
+  //     street,
+  //     city,
+  //     state,
+  //     date,
+  //     signUpTime,
+  //     startTime,
+  //     stopTime,
+  //   }: EventContextType) => {
+  //     console.log(
+  //       id,
+  //       venue,
+  //       street,
+  //       city,
+  //       state,
+  //       date,
+  //       signUpTime,
+  //       startTime,
+  //       stopTime,
+  //     );
+  //   },
+  //   [],
+  // );
 
   const deleteEvent = useCallback(() => {}, []);
 
