@@ -11,6 +11,7 @@ import { supabase } from "../lib/supabase";
 import { useAuth } from "./AuthContexts";
 import type { ProfileType } from "../interface/types";
 import type { ProfileContextType } from "../interface/types";
+import type { User } from "@supabase/supabase-js";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const ProfileContext = createContext<ProfileContextType | undefined>(
@@ -55,7 +56,12 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [user]);
 
   const updateProfile = useCallback(
-    async (firstName: string, lastName: string, stageName: string) => {
+    async (
+      user: User,
+      firstName: string,
+      lastName: string,
+      stageName: string,
+    ) => {
       if (!user) throw new Error("No user logged in");
 
       console.log("updating profile");
@@ -78,7 +84,7 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
         stage_name: stageName,
       } as ProfileType);
     },
-    [user],
+    [],
   );
 
   const value = useMemo(
