@@ -1,0 +1,12 @@
+/* src/components/Dashboard/RightDash/RightStatic/RightPanels.css */
+.right-static {
+  width: 80%;
+}
+
+input {
+  width: 100%;
+}
+
+.spacer {
+  height: 10px;
+}

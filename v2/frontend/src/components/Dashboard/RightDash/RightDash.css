@@ -1,9 +1,14 @@
+/* src/components/Dashboard/RightDash/RightStatic/RightDash.css */
+
 .right-section {
   height: calc(100vh - 50px);
   background-color: var(--red-a50);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .event-creation-panel {
