@@ -7,10 +7,7 @@ import React, {
   createContext,
   useCallback,
 } from "react";
-import { useAuth } from "./AuthContexts";
-import { useProfile } from "./ProfileContexts";
-import type { User, Session } from "@supabase/supabase-js";
-import type { ProfileType } from "../interface/types";
+
 import type { EventContextType, EventPayload } from "../interface/types";
 
 // eslint-disable-next-line react-refresh/only-export-components

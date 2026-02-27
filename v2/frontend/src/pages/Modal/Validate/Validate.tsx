@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/AuthContexts";
-import { useProfile } from "../../../contexts/ProfileContexts";
 import { supabase } from "../../../lib/supabase";
 import "../Modal.css";
 import "./Validate.css";

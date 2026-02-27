@@ -67,7 +67,7 @@ export interface EventContextType {
   deleteEvent: () => void;
 }
 
-interface EventPayload {
+export interface EventPayload {
   id: string;
   venue: string;
   address: string;

@@ -6,12 +6,10 @@
   padding-left: 40px;
   padding-right: 40px;
   gap: 40px;
-  background-color: var(--red-a50);
 }
 
 .dash-text {
   padding: 20px;
-  background-color: var(--red-a50);
 }
 
 .dash-emphasis {

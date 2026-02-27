@@ -1,0 +1,14 @@
+.right-section {
+  height: calc(100vh - 50px);
+  background-color: var(--red-a50);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.event-creation-panel {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 5px;
+}
