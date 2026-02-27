@@ -67,7 +67,6 @@ export const CreateEvent: React.FC = () => {
           className="event-input end-time"
         />
       </form>
-      {/* <p className="right-section-text dash-text">Create</p> */}
     </section>
   );
 };

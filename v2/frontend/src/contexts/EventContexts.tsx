@@ -8,7 +8,11 @@ import React, {
   useCallback,
 } from "react";
 
-import type { EventContextType, EventPayload } from "../interface/types";
+import type {
+  EventContextType,
+  EventPayload,
+  Address,
+} from "../interface/types";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const EventContext = createContext<EventContextType | undefined>(
@@ -25,6 +29,7 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
   const [zip, setZip] = useState<number>(0);
+  const [address, setAddress] = useState<Address | null>(null);
   const [date, setDate] = useState<string>("");
   const [signUpTime, setSignUpTime] = useState<number>(0);
   const [startTime, setStartTime] = useState<number>(0);
@@ -48,62 +53,10 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
     console.log(id, venue, address, date, signUpTime, startTime, stopTime);
   }, []);
 
-  // const createEvent = useCallback(
-  //   async ({
-  //     id,
-  //     venue,
-  //     street,
-  //     city,
-  //     state,
-  //     date,
-  //     signUpTime,
-  //     startTime,
-  //     stopTime,
-  //   }: EventPayload) => {
-  //     console.log(
-  //       id,
-  //       venue,
-  //       street,
-  //       city,
-  //       state,
-  //       date,
-  //       signUpTime,
-  //       startTime,
-  //       stopTime,
-  //     );
-  //   },
-  //   [],
-  // );
   const updateEvent = useCallback(async (data: EventPayload): Promise<void> => {
     const { id, venue, address, date, signUpTime, startTime, stopTime } = data;
     console.log(id, venue, address, date, signUpTime, startTime, stopTime);
   }, []);
-  // const updateEvent = useCallback(
-  //   async ({
-  //     id,
-  //     venue,
-  //     street,
-  //     city,
-  //     state,
-  //     date,
-  //     signUpTime,
-  //     startTime,
-  //     stopTime,
-  //   }: EventContextType) => {
-  //     console.log(
-  //       id,
-  //       venue,
-  //       street,
-  //       city,
-  //       state,
-  //       date,
-  //       signUpTime,
-  //       startTime,
-  //       stopTime,
-  //     );
-  //   },
-  //   [],
-  // );
 
   const deleteEvent = useCallback(() => {}, []);
 
@@ -123,6 +76,8 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       setState,
       zip,
       setZip,
+      address,
+      setAddress,
       date,
       setDate,
       signUpTime,
@@ -151,6 +106,8 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       setState,
       zip,
       setZip,
+      address,
+      setAddress,
       date,
       setDate,
       signUpTime,

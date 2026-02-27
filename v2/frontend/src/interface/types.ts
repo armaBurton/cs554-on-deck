@@ -76,3 +76,12 @@ export interface EventPayload {
   startTime: number;
   stopTime: number;
 }
+
+export interface Address {
+  id: string;
+  venue: string;
+  street: string;
+  city: string;
+  state: string;
+  zip: number;
+}
