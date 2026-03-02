@@ -2,3 +2,12 @@
 .event-creation-panel {
   margin-bottom: 20px;
 }
+
+.attendance {
+  width: 100%;
+  height: 250px;
+  margin: 20px 0;
+  bottom: 0;
+  background-color: linen;
+  margin-top: 0;
+}

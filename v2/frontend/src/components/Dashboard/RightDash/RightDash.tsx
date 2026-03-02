@@ -5,8 +5,6 @@ import { RightStatic } from "./RightStatic/RightStatic";
 import { CreateEvent } from "./CreateEvent/CreateEvent";
 import { ControlPanel } from "../ControlPanel/ControlPanel";
 
-import "../../../index.css";
-import "../../../pages/Dashboard/Dashboard.css";
 import "./RightDash.css";
 
 export const RightDash: React.FC = () => {

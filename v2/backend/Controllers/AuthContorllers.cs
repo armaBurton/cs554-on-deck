@@ -1,5 +1,5 @@
 // Controllers/AuthControllers.cs
-using backend.Models.DTOs;
+using backend.Models.Profile.DTOs;
 using backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using Supabase.Gotrue;

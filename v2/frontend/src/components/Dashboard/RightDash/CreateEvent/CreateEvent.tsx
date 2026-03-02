@@ -16,41 +16,22 @@ export const CreateEvent: React.FC = () => {
           </span>
         </p>
       </div>
-      <form
-        action="submit"
-        className="creation-form"
-      >
-        <input
-          type="text"
-          placeholder="Venue"
-          className="event-input venue"
-        />
+      <form action="submit" className="creation-form">
+        <input type="text" placeholder="Venue" className="event-input venue" />
         <div className="spacer" />
         <input
           type="text"
           placeholder="Street Address"
           className="event-input street-address"
         />
-        <input
-          type="text"
-          placeholder="City"
-          className="event-input city"
-        />
-        <input
-          type="text"
-          placeholder="State"
-          className="event-input state"
-        />
+        <input type="text" placeholder="City" className="event-input city" />
+        <input type="text" placeholder="State" className="event-input state" />
         <input
           type="number"
           placeholder="ZipCode"
           className="event-input zip"
         />
-        <input
-          type="date"
-          placeholder="Date"
-          className="event-input date"
-        />
+        <input type="date" placeholder="Date" className="event-input date" />
         <div className="spacer" />
         <p>Sign Ups Start</p>
         <input
