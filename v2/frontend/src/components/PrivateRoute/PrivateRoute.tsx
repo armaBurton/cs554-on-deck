@@ -1,6 +1,6 @@
 // src/components/PrivateRoutes/PrivateRoutes.tsx
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContexts";
+import { useAuth } from "../../contexts/AuthContext";
 import { NavStatus } from "../NavStatus/NavStatus";
 
 interface PrivateRouteProps {
@@ -18,7 +18,10 @@ export const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
       ) : user ? (
         <>{children}</>
       ) : (
-        <Navigate to="/validate" />
+        <Navigate
+          to="/validate"
+          replace
+        />
       )}
     </>
   );

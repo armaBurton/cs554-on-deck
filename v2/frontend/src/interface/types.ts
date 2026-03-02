@@ -15,13 +15,6 @@ export interface HamburgerProps {
   onClick: () => void;
   isInitiallyOpen?: boolean;
 }
-
-export interface ProfileType {
-  firstName?: string;
-  lastName?: string;
-  stageName?: string;
-}
-
 export interface ProfileContextType {
   profile: ProfileType | null;
   setProfile: React.Dispatch<React.SetStateAction<ProfileType | null>>;
@@ -53,14 +46,14 @@ export interface EventContextType {
   setCity: React.Dispatch<React.SetStateAction<string>>;
   state: string;
   setState: React.Dispatch<React.SetStateAction<string>>;
-  date: string;
-  setDate: React.Dispatch<React.SetStateAction<string>>;
-  signUpTime: number;
-  setSignUpTime: React.Dispatch<React.SetStateAction<number>>;
-  startTime: number;
-  setStartTime: React.Dispatch<React.SetStateAction<number>>;
-  stopTime: number;
-  setStopTime: React.Dispatch<React.SetStateAction<number>>;
+  date: Date;
+  setDate: React.Dispatch<React.SetStateAction<Date>>;
+  signUpTime: TimeRanges;
+  setSignUpTime: React.Dispatch<React.SetStateAction<TimeRanges>>;
+  startTime: TimeRanges;
+  setStartTime: React.Dispatch<React.SetStateAction<TimeRanges>>;
+  stopTime: TimeRanges;
+  setStopTime: React.Dispatch<React.SetStateAction<TimeRanges>>;
   resetEvent: () => void;
   createEvent: (data: EventPayload) => Promise<void>;
   updateEvent: (data?: EventPayload) => Promise<void>;
@@ -70,11 +63,11 @@ export interface EventContextType {
 export interface EventPayload {
   id: string;
   venue: string;
-  address: string;
+  address: Address | null;
   date: Date;
-  signUpTime: number;
-  startTime: number;
-  stopTime: number;
+  signUpTime: TimeRanges;
+  startTime: TimeRanges;
+  stopTime: TimeRanges;
 }
 
 export interface Address {

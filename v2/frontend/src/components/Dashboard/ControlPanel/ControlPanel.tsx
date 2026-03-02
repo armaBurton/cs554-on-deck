@@ -1,6 +1,6 @@
 // src/components/Dashboard/ControlPanel/ControlPanel.tsx
 import React from "react";
-import { useEvent } from "../../../contexts/EventContexts";
+import { useEvent } from "../../../contexts/EventContext";
 
 import "./ControlPanel.css";
 
@@ -13,11 +13,12 @@ export const ControlPanel: React.FC = () => {
         onClick={() => {
           setEvent(!event);
         }}
+        disabled={event}
       >
         Create Event
       </button>
-      <button>Find Event</button>
-      <button>Something Else</button>
+      <button disabled={event}>Find Event</button>
+      <button disabled={event}>Something Else</button>
     </div>
   );
 };

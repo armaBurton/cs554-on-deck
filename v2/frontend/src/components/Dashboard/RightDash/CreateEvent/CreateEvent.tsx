@@ -1,8 +1,12 @@
 // src/components/Dashboard/RightDash/CreateEvent/CreateEvent.tsx
 import React from "react";
+import { useEvent } from "../../../../contexts/EventContext";
 import "../RightPanels.css";
+import "./CreateEvent.css";
 
 export const CreateEvent: React.FC = () => {
+  const { setEvent } = useEvent();
+
   return (
     <section className="right-static">
       <div className="right-dash-header dash-header">
@@ -18,7 +22,7 @@ export const CreateEvent: React.FC = () => {
       >
         <input
           type="text"
-          placeholder="Where is the event being held?"
+          placeholder="Venue"
           className="event-input venue"
         />
         <div className="spacer" />
@@ -66,6 +70,10 @@ export const CreateEvent: React.FC = () => {
           placeholder="End Time"
           className="event-input end-time"
         />
+        <div className="sub-panel">
+          <button>Create</button>
+          <button onClick={() => setEvent(false)}>Cancel</button>
+        </div>
       </form>
     </section>
   );

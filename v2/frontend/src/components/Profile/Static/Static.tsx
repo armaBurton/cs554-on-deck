@@ -1,7 +1,7 @@
 // src/components/Profile/Static.tsx
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useProfile } from "../../../contexts/ProfileContexts";
+import { useProfile } from "../../../contexts/ProfileContext";
 
 export const Static: React.FC = () => {
   const {

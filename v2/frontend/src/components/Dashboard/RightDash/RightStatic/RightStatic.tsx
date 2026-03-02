@@ -1,6 +1,6 @@
 // src/components/Dashboard/RightDash/RightStatic/RightStatic.tsx
 import React from "react";
-import { useProfile } from "../../../../contexts/ProfileContexts";
+import { useProfile } from "../../../../contexts/ProfileContext";
 import { getName } from "../../../../services/services";
 import "../RightPanels.css";
 

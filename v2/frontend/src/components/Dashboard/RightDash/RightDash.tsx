@@ -1,6 +1,6 @@
 // src/pages/Dashboard/Right_Dash/RightDash.tsx
 import React from "react";
-import { useEvent } from "../../../contexts/EventContexts";
+import { useEvent } from "../../../contexts/EventContext";
 import { RightStatic } from "./RightStatic/RightStatic";
 import { CreateEvent } from "./CreateEvent/CreateEvent";
 import { ControlPanel } from "../ControlPanel/ControlPanel";

@@ -6,9 +6,9 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { AuthProvider } from "./contexts/AuthContexts.tsx";
-import { ProfileProvider } from "./contexts/ProfileContexts.tsx";
-import { EventProvider } from "./contexts/EventContexts.tsx";
+import { AuthProvider } from "./contexts/AuthContext.tsx";
+import { ProfileProvider } from "./contexts/ProfileContext.tsx";
+import { EventProvider } from "./contexts/EventContext.tsx";
 
 import { Register } from "./pages/Modal/Register/Register";
 import { Validate } from "./pages/Modal/Validate/Validate";
@@ -27,14 +27,8 @@ function App() {
           <BrowserRouter>
             <NavStatus />
             <Routes>
-              <Route
-                path="/register"
-                element={<Register />}
-              />
-              <Route
-                path="/validate"
-                element={<Validate />}
-              />
+              <Route path="/register" element={<Register />} />
+              <Route path="/validate" element={<Validate />} />
               <Route
                 path="/dashboard"
                 element={
@@ -52,10 +46,7 @@ function App() {
                 }
               />
 
-              <Route
-                path="/"
-                element={<Validate />}
-              />
+              <Route path="/" element={<Validate />} />
             </Routes>
           </BrowserRouter>
         </EventProvider>

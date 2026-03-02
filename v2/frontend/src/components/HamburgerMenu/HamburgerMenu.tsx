@@ -1,8 +1,9 @@
 // src/components/Hamburger/Hamburger.tsx
 import React, { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { Squash as Hamburger } from "hamburger-react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContexts";
+import { useAuth } from "../../contexts/AuthContext";
 import "./HamburgerMenu.css";
 
 export const HamburgerMenu: React.FC = () => {
@@ -10,8 +11,6 @@ export const HamburgerMenu: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const navigate = useNavigate();
-
-  if (!user) navigate("/validate");
 
   const handleSignOut = async () => {
     await signOut();
@@ -31,33 +30,21 @@ export const HamburgerMenu: React.FC = () => {
 
   return (
     <div className="hamburger-container">
-      <Hamburger
-        toggled={isOpen}
-        toggle={setIsOpen}
-      />
+      <Hamburger toggled={isOpen} toggle={setIsOpen} />
       <nav className={`menu ${isOpen ? "open" : ""}`}>
         <ul>
           <li>
-            <a
-              href="#"
-              onClick={handleDashboard}
-            >
+            <a href="#" onClick={handleDashboard}>
               Dashboard
             </a>
           </li>
           <li>
-            <a
-              href="#"
-              onClick={handleProfile}
-            >
+            <a href="#" onClick={handleProfile}>
               Profile
             </a>
           </li>
           <li>
-            <a
-              href="#"
-              onClick={handleSignOut}
-            >
+            <a href="#" onClick={handleSignOut}>
               Log Out
             </a>
           </li>

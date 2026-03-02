@@ -2,17 +2,19 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../../lib/supabase";
 import { useAuth } from "../../contexts/AuthContext";
-import type { Profile as ProfileType, Social } from "../../types/types";
+// import type { ProfileType } from "../../types/types";
+
+// import type { Profile as ProfileType, Social } from "../../types/types";
 
 export const Profile: React.FC = () => {
   const { user } = useAuth();
-  const [profile, setProfile] = useState<ProfileType | null>(null);
-  const [socials, setSocials] = useState<Social[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [updating, setUpdating] = useState<boolean>(false);
-  const [firstName, setFirstName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [stageName, setStageName] = useState<string>("");
+  // const [profile, setProfile] = useState<ProfileType | null>(null);
+  // const [socials, setSocials] = useState<Social[]>([]);
+  // const [loading, setLoading] = useState<boolean>(true);
+  // const [updating, setUpdating] = useState<boolean>(false);
+  // const [firstName, setFirstName] = useState<string>("");
+  // const [lastName, setLastName] = useState<string>("");
+  // const [stageName, setStageName] = useState<string>("");
 
   const [newSocialPlatform, setNewSocialPlatform] = useState("");
   const [newSocialUrl, setNewSocialUrl] = useState("");

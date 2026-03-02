@@ -1,6 +1,7 @@
 // src/pages/SignUp/SignUp.tsx
 import React, { useState } from "react";
-import { useAuth } from "../../../contexts/AuthContexts";
+import { useAuth } from "../../../contexts/AuthContext";
+import { useProfile } from "../../../contexts/ProfileContext";
 import { useNavigate } from "react-router-dom";
 import "../Modal.css";
 
@@ -14,11 +15,14 @@ export const Register: React.FC = () => {
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const { register } = useAuth();
+  const { profile } = useProfile();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
     setLoading(true);
+
+    console.log("Register.handleSubmit --> ", profile);
 
     if (password !== validate) {
       console.log("Passwords do not match");
@@ -37,7 +41,6 @@ export const Register: React.FC = () => {
       setLoading(false);
     }
   };
-  console.log(`Register`);
 
   return (
     <>
@@ -82,39 +85,6 @@ export const Register: React.FC = () => {
                 required
               />
             </div>
-
-            {/* <div className="break">
-              <p>optional</p>
-            </div>
-
-            <div className="modal-form-group text-group first-name-group">
-              <input
-                type="text"
-                className="modal-input first-name-input"
-                placeholder="First Name"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-              />
-            </div>
-
-            <div className="modal-form-group text-group last-name-group">
-              <input
-                type="text"
-                className="modal-input last-name-input"
-                placeholder="Last Name"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-              />
-            </div>
-            <div className="modal-form-group text-group stage-name-group">
-              <input
-                type="text"
-                className="modal-input stage-name-input"
-                placeholder="Stage Name"
-                value={stageName}
-                onChange={(e) => setStageName(e.target.value)}
-              />
-            </div> */}
             <div className="button-div">
               <button
                 className="modal-button"

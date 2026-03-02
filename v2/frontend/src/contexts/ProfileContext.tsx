@@ -8,7 +8,7 @@ import React, {
   useCallback,
 } from "react";
 import { supabase } from "../lib/supabase";
-import { useAuth } from "./AuthContexts";
+import { useAuth } from "./AuthContext";
 import type { ProfileType } from "../interface/types";
 import type { ProfileContextType } from "../interface/types";
 import type { User } from "@supabase/supabase-js";
@@ -62,9 +62,9 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
       lastName: string,
       stageName: string,
     ) => {
-      if (!user) throw new Error("No user logged in");
+      // if (!user) throw new Error("No user logged in");
 
-      console.log("updating profile");
+      console.log("updating profile --> ", user);
 
       const { error } = await supabase.from("profiles").upsert({
         id: user.id,

@@ -1,7 +1,6 @@
 // src/context/EventContexts.tsx
 import React, {
   useState,
-  useEffect,
   useContext,
   useMemo,
   createContext,
@@ -28,12 +27,12 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
   const [street, setStreet] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
-  const [zip, setZip] = useState<number>(0);
+  const [zip, setZip] = useState<number>(-1);
   const [address, setAddress] = useState<Address | null>(null);
-  const [date, setDate] = useState<string>("");
-  const [signUpTime, setSignUpTime] = useState<number>(0);
-  const [startTime, setStartTime] = useState<number>(0);
-  const [stopTime, setStopTime] = useState<number>(0);
+  const [date, setDate] = useState<Date | null>(null);
+  const [signUpTime, setSignUpTime] = useState<TimeRanges | null>(null);
+  const [startTime, setStartTime] = useState<TimeRanges | null>(null);
+  const [stopTime, setStopTime] = useState<TimeRanges | null>(null);
 
   const resetEvent = useCallback(() => {
     setId("");
@@ -42,10 +41,12 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
     setStreet("");
     setCity("");
     setState("");
-    setDate("");
-    setSignUpTime(0);
-    setStartTime(0);
-    setStopTime(0);
+    setZip(-1);
+    setAddress(null);
+    setDate(null);
+    setSignUpTime(null);
+    setStartTime(null);
+    setStopTime(null);
   }, []);
 
   const createEvent = useCallback(async (data: EventPayload): Promise<void> => {

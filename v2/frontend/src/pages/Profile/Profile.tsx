@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabase";
-import { useAuth } from "../../contexts/AuthContexts";
-import { useProfile } from "../../contexts/ProfileContexts";
+import { useAuth } from "../../contexts/AuthContext";
+import { useProfile } from "../../contexts/ProfileContext";
 import { loadProfile } from "../../components/Profile/profile";
 import { Dynamic } from "../../components/Profile/Dynamic/Dynamic";
 import { Static } from "../../components/Profile/Static/Static";
@@ -45,7 +45,7 @@ export const Profile: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profile]);
 
-  console.log(`Profile-->updating: ${updating}`);
+  // console.log(`Profile-->updating: ${updating}`, profile);
 
   return (
     <section className="profile-section main">

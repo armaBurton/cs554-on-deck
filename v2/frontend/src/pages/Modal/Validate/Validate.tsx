@@ -1,7 +1,7 @@
 // src/pages/Modal/Validate/Validate.tsx
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../contexts/AuthContexts";
+import { useAuth } from "../../../contexts/AuthContext";
 import { supabase } from "../../../lib/supabase";
 import "../Modal.css";
 import "./Validate.css";

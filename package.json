@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "dev": "cd v2/frontend && npm run dev",
+    "serve": "cd v2/backend && dotnet run"
+  }
+}
