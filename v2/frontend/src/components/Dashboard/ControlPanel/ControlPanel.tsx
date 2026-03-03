@@ -9,8 +9,10 @@ export const ControlPanel: React.FC = () => {
 
   return (
     <div className="event-creation-container">
-      <p className="roster">Signed Up</p>
-      <div className="attendance"></div>
+      <p className="roster">On-Deck</p>
+      <div className="attendance">
+        ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+      </div>
       <div className="event-creation-panel">
         <button
           onClick={() => {

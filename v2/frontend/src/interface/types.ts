@@ -60,21 +60,27 @@ export interface EventContextType {
   deleteEvent: () => void;
 }
 
-export interface EventPayload {
-  id: string;
-  venue: string;
-  address: Address | null;
-  date: Date;
-  signUpTime: TimeRanges;
-  startTime: TimeRanges;
-  stopTime: TimeRanges;
-}
-
-export interface Address {
-  id: string;
+export interface EventType {
+  id?: string;
+  user_id?: string;
   venue: string;
   street: string;
   city: string;
   state: string;
   zip: number;
+  date: string; // "YYYY-MM-DD"
+  signUpTime: string; // "HH:mm"
+  startTime: string;
+  stopTime: string;
+  attendees: Attendee[];
 }
+
+export interface Attendee {
+  id?: string;
+  user_id?: string;
+  name: string;
+  status: AttendanceStatus;
+  email?: string;
+}
+
+export type AttendanceStatus = "A" | "M" | "N" | "C";

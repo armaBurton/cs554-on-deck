@@ -1,7 +1,7 @@
 .main-dashboard {
   width: 100%;
   display: grid;
-  grid-template-columns: 2.5fr 1fr;
+  grid-template-columns: 2fr 1fr;
   justify-content: space-evenly;
   padding-left: 40px;
   padding-right: 40px;

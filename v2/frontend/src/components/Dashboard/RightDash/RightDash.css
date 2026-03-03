@@ -3,6 +3,7 @@
 .right-section {
   height: calc(100vh - 50px);
   background-color: var(--red-a50);
+  max-width: calc(100vw / 3);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
