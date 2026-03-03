@@ -1,6 +1,10 @@
 // Program.cs
-using backend.Models.DTOs;
+using System.Text;
+using backend.Models.Events.DTOs;
+using backend.Models.Profile.DTOs;
 using backend.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -62,14 +66,17 @@ builder
     .Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
+        var _jwtSecret = builder.Configuration["Supabase:JwtSecret"];
+        var _supabaseUrl = builder.Configuration["Supabase:Url"];
+
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Supabase:SUPABASE_JWT_SECRET"])
+                Encoding.UTF8.GetBytes(builder.Configuration[_jwtSecret])
             ),
             ValidateIssuer = true,
-            ValidIssuer = "SUPABASE_PROJECT_URL/auth/v1",
+            ValidIssuer = $"{_supabaseUrl}/auth/v1",
             ValidateAudience = true,
             ValidAudience = "authenticated",
             ValidateLifetime = true,
@@ -90,11 +97,11 @@ else
     app.UseHttpsRedirection();
 }
 
-app.UseAuthentication();
-app.UseAuthorization();
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
 app.UseAuthorization();
 app.MapControllers();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.Run();

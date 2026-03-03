@@ -1,27 +1,50 @@
 // v2\backend\Models\Events\Events.cs
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Runtime.CompilerServices;
+using backend.Models.Events.DTOs;
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 using Column = Supabase.Postgrest.Attributes.ColumnAttribute;
 
 namespace backend.Models.Events;
 
-public class Event
+public class Event : BaseModel
 {
+    [PrimaryKey("id")]
     public Guid? Id { get; set; }
+
+    [Column("user_id")]
     public Guid UserId { get; set; }
-    public string Venue { get; set; }
-    public string Street { get; set; }
-    public string City { get; set; }
-    public string State { get; set; }
+
+    [Column("venue")]
+    public string Venue { get; set; } = string.Empty;
+
+    [Column("street")]
+    public string Street { get; set; } = string.Empty;
+
+    [Column("city")]
+    public string City { get; set; } = string.Empty;
+
+    [Column("state")]
+    public string State { get; set; } = string.Empty;
+
+    [Column("zip")]
     public int Zip { get; set; }
+
+    [Column("date")]
     public DateOnly Date { get; set; }
+
+    [Column("signup")]
     public TimeOnly Signup { get; set; }
+
+    [Column("start")]
     public TimeOnly Start { get; set; }
+
+    [Column("finish")]
     public TimeOnly Finish { get; set; }
+
+    [Column("List")]
     public List<Attendee> Attendees { get; set; } = new();
 }

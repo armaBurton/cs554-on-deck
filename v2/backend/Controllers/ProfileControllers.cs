@@ -1,6 +1,6 @@
 // Controllers/ProfileController.cs
-using backend.Profile.Models;
-using backend.Profile.Models.DTOs;
+using backend.Models.Profile;
+using backend.Models.Profile.DTOs;
 using backend.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

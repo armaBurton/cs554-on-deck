@@ -66,7 +66,7 @@ public class AuthController : ControllerBase
     {
         try
         {
-            var client = await _supabaseService.GetClientAsync();
+            var client = await _.GetClientAsync();
             var session = await client.Auth.SignIn(request.Email, request.Password);
 
             if (session?.User == null)
