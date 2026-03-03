@@ -1,5 +1,5 @@
 // Models/DTOs/ProfileUpdateRequest.cs
-namespace backend.Models.DTOs;
+namespace backend.Models.Profile.DTOs;
 
 public class ProfileUpdateRequest
 {

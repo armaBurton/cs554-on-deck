@@ -8,6 +8,8 @@ using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 using Column = Supabase.Postgrest.Attributes.ColumnAttribute;
 
+namespace backend.Models.Events;
+
 public class Attendee
 {
     public Guid? Id { get; set; }

@@ -1,4 +1,6 @@
 // Models/DTOs/LoginRequest.cs
+namespace backend.Models.Profile.DTOs;
+
 public class LoginRequest
 {
     public string Email { get; set; } = string.Empty;

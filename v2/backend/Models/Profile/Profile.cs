@@ -6,7 +6,7 @@ using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 using Column = Supabase.Postgrest.Attributes.ColumnAttribute;
 
-namespace backend.Models;
+namespace backend.Models.Profile;
 
 [Supabase.Postgrest.Attributes.Table("profiles")]
 public class Profile : BaseModel

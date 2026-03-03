@@ -1,4 +1,7 @@
 // v2\backend\Models\Profile\DTOs\EventDTOs.cs
+
+namespace backend.Models.Profile.DTOs;
+
 public class AttendeeRequest
 {
     public string AttendeeName { get; set; } = string.Empty;
