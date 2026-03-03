@@ -1,5 +1,12 @@
 // v2\backend\Models\Events\Events.cs
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.CompilerServices;
+using Supabase.Postgrest.Attributes;
+using Supabase.Postgrest.Models;
+using Column = Supabase.Postgrest.Attributes.ColumnAttribute;
 
 public class Attendee
 {
