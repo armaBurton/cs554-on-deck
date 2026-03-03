@@ -72,4 +72,46 @@ public class EventsController : ControllerBase
     }
 
     // *** ATTENDEES ***
+
+    [HttpPost("{id}/attendees")]
+    public async Task<IActionResult> AddAttendee(Guid id, [FromBody] AttendeeRequest req)
+    {
+        var userId = GetUserId();
+        if (userId == null)
+            return Unauthorized();
+        var attendee = await _eventsService.AddAttendeeAsync(id, req, userId.Value);
+        return attendee == null ? NotFound() : Ok(attendee);
+    }
+
+    [HttpPut("{id}/attendees/{attendeeId}")]
+    public async Task<IActionResult> UpdateAttendee(
+        Guid id,
+        Guid attendeeId,
+        [FromBody] AttendeeRequest req
+    )
+    {
+        var userId = GetUserId();
+        if (userId == null)
+            return Unauthorized();
+        var attendee = await _eventService.UpdateAttendeeAsync(id);
+        return attendee == null ? NotFound() : OK(attendee);
+    }
+
+    [HttpDelete("{id}/attendees/{attendeeId}")]
+    public async Task<IActionResult> DeleteAttendee(Guid id, Guid attendeeId)
+    {
+        var userId = GetUserId();
+        if (userId == null)
+            return Unauthorized();
+        await _eventService.DeleteAttendeeAsync(id, attendeeId, userId.value);
+        return NoContent();
+    }
+
+    // *** HELPERS ***
+
+    private Guid? GetUserId()
+    {
+        var claim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        return Guid.TryParse(claim, out var id) ? id : null;
+    }
 }
