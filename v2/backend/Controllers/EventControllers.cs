@@ -50,4 +50,26 @@ public class EventsController : ControllerBase
         var created = await _eventService.CreateAsync(req, userId.value);
         return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(Guid id, [FromBody] CreateEventRequest req)
+    {
+        var userId = GetUserId();
+        if (userId == null)
+            return Unauthorized();
+        var updated = await _eventService.UpdateAsync(id, req, userId.Value);
+        return updated == null ? NotFound() : Ok(updated);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid ig)
+    {
+        var userId = GetUserId();
+        if (userId == null)
+            return Unauthorized();
+        await _eventService.DeleteAsync(id, userId.Value);
+        return NoContent();
+    }
+
+    // *** ATTENDEES ***
 }
