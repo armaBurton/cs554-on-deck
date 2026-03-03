@@ -48,3 +48,13 @@ public class Event : BaseModel
     [Column("List")]
     public List<Attendee> Attendees { get; set; } = new();
 }
+
+public class Attendee : BaseModel
+{
+    public Guid? Id { get; set; }
+    public Guid EventId { get; set; }
+    public Guid? UserId { get; set; } // null = creator-added; set = self-registered
+    public string AttendeeName { get; set; } = string.Empty;
+    public char Attendance { get; set; } // 'A' | 'M' | 'N' | 'C'
+    public string? Email { get; set; }
+}

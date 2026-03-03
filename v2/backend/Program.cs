@@ -11,6 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 DotNetEnv.Env.Load();
 
+var _jwtSecret = builder.Configuration["Supabase:JwtSecret"];
+var _supabaseUrl = builder.Configuration["Supabase:Url"];
+var _anonKey = builder.Configuration["Supabase:AnonKey"];
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -45,6 +49,9 @@ builder.Services.AddSwaggerGen(c =>
     );
 });
 
+var supabase = new Supabase.Client(_supabaseUrl!, builder.Configuration["Supabase:AnonKey"]);
+await supabase.InitializeAsync();
+
 builder.Services.AddSingleton<ISupabaseService, SupabaseService>();
 
 var allowedOrigins =
@@ -66,15 +73,10 @@ builder
     .Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        var _jwtSecret = builder.Configuration["Supabase:JwtSecret"];
-        var _supabaseUrl = builder.Configuration["Supabase:Url"];
-
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuerSigningKey = true,
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration[_jwtSecret])
-            ),
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSecret!)),
             ValidateIssuer = true,
             ValidIssuer = $"{_supabaseUrl}/auth/v1",
             ValidateAudience = true,
@@ -84,6 +86,8 @@ builder
     });
 
 builder.Services.AddAuthorization();
+builder.Services.AddSingleton(supabase);
+builder.Services.AddScoped<EventsService>();
 
 var app = builder.Build();
 
@@ -100,8 +104,8 @@ else
 app.UseHttpsRedirection();
 app.UseCors("AllowFrontend");
 app.UseAuthorization();
-app.MapControllers();
 app.UseAuthentication();
 app.UseAuthorization();
+app.MapControllers();
 
 app.Run();

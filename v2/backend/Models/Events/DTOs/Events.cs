@@ -1,14 +1,15 @@
-// v2\backend\Models\Profile\DTOs\EventDTOs.cs
+// v2\backend\Models\Events\DTOs\EventDTOs.cs
 
-namespace backend.Models.Profile.DTOs;
+namespace backend.Models.Events.DTOs;
 
 public class AttendeeRequest
 {
+    public Guid? Id { get; set; }
+    public Guid EventId { get; set; }
+    public Guid? UserId { get; set; }
     public string AttendeeName { get; set; } = string.Empty;
     public char Attendance { get; set; }
     public string? Email { get; set; }
-
-    public Guid? UserId { get; set; }
 }
 
 public class CreateEventRequest
@@ -19,7 +20,7 @@ public class CreateEventRequest
     public string State { get; set; } = string.Empty;
     public int Zip { get; set; }
     public DateOnly Date { get; set; }
-    public TimeOnly SignUp { get; set; }
+    public TimeOnly Signup { get; set; }
     public TimeOnly Start { get; set; }
     public TimeOnly Finish { get; set; }
     public List<AttendeeRequest> Attendees { get; set; } = new();
