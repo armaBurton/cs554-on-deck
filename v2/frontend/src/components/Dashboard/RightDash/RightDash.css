@@ -18,3 +18,15 @@
   justify-content: space-evenly;
   gap: 5px;
 }
+
+.right-static {
+  width: 80%;
+}
+
+input {
+  width: 100%;
+}
+
+.spacer {
+  height: 10px;
+}

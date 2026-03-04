@@ -34,6 +34,10 @@ export interface ProfileContextType {
 }
 
 export interface EventContextType {
+  error: string;
+  setError: React.Dispatch<React.SetStateAction<string>>;
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   id: string;
   setId: React.Dispatch<React.SetStateAction<string>>;
   event: boolean;
@@ -46,17 +50,19 @@ export interface EventContextType {
   setCity: React.Dispatch<React.SetStateAction<string>>;
   state: string;
   setState: React.Dispatch<React.SetStateAction<string>>;
-  date: Date;
-  setDate: React.Dispatch<React.SetStateAction<Date>>;
-  signUpTime: TimeRanges;
-  setSignUpTime: React.Dispatch<React.SetStateAction<TimeRanges>>;
-  startTime: TimeRanges;
-  setStartTime: React.Dispatch<React.SetStateAction<TimeRanges>>;
-  stopTime: TimeRanges;
-  setStopTime: React.Dispatch<React.SetStateAction<TimeRanges>>;
+  zip: number;
+  setZip: React.Dispatch<React.SetStateAction<number>>;
+  date: string;
+  setDate: React.Dispatch<React.SetStateAction<string>>;
+  signUp: string;
+  setSignUp: React.Dispatch<React.SetStateAction<string>>;
+  start: string;
+  setStart: React.Dispatch<React.SetStateAction<string>>;
+  stop: string;
+  setStop: React.Dispatch<React.SetStateAction<string>>;
   resetEvent: () => void;
-  createEvent: (data: EventPayload) => Promise<void>;
-  updateEvent: (data?: EventPayload) => Promise<void>;
+  createEvent: (data: EventType) => Promise<void>;
+  updateEvent: (data?: EventType) => Promise<void>;
   deleteEvent: () => void;
 }
 
@@ -69,9 +75,9 @@ export interface EventType {
   state: string;
   zip: number;
   date: string; // "YYYY-MM-DD"
-  signUpTime: string; // "HH:mm"
-  startTime: string;
-  stopTime: string;
+  signUp: string; // "HH:mm"
+  start: string;
+  stop: string;
   attendees: Attendee[];
 }
 

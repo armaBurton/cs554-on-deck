@@ -9,8 +9,7 @@ import React, {
 } from "react";
 import { supabase } from "../lib/supabase";
 import { useAuth } from "./AuthContext";
-import type { ProfileType } from "../interface/types";
-import type { ProfileContextType } from "../interface/types";
+import type { ProfileType, ProfileContextType } from "../interface/types";
 import type { User } from "@supabase/supabase-js";
 
 // eslint-disable-next-line react-refresh/only-export-components

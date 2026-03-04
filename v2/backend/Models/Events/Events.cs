@@ -34,16 +34,16 @@ public class Event : BaseModel
     public int Zip { get; set; }
 
     [Column("date")]
-    public DateOnly Date { get; set; }
+    public string Date { get; set; }
 
     [Column("signup")]
-    public TimeOnly Signup { get; set; }
+    public string Signup { get; set; }
 
     [Column("start")]
-    public TimeOnly Start { get; set; }
+    public string Start { get; set; }
 
     [Column("finish")]
-    public TimeOnly Finish { get; set; }
+    public string Finish { get; set; }
 
     [Column("List")]
     public List<Attendee> Attendees { get; set; } = new();

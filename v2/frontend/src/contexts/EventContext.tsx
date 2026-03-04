@@ -5,12 +5,13 @@ import React, {
   useMemo,
   createContext,
   useCallback,
+  useEffect,
 } from "react";
-
+import { supabase } from "../lib/supabase";
 import type {
   EventContextType,
-  EventPayload,
-  Address,
+  EventType,
+  AttendeeType,
 } from "../interface/types";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -21,6 +22,8 @@ export const EventContext = createContext<EventContextType | undefined>(
 export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const [id, setId] = useState<string>("");
   const [event, setEvent] = useState<boolean>(false);
   const [venue, setVenue] = useState<string>("");
@@ -28,13 +31,14 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
   const [zip, setZip] = useState<number>(-1);
-  const [address, setAddress] = useState<Address | null>(null);
-  const [date, setDate] = useState<Date | null>(null);
-  const [signUpTime, setSignUpTime] = useState<TimeRanges | null>(null);
-  const [startTime, setStartTime] = useState<TimeRanges | null>(null);
-  const [stopTime, setStopTime] = useState<TimeRanges | null>(null);
+  const [date, setDate] = useState<string>(""); // YYYY:MM:DD
+  const [signUp, setSignUp] = useState<string>(""); // "HH:mm"
+  const [start, setStart] = useState<string>("");
+  const [stop, setStop] = useState<string>("");
 
   const resetEvent = useCallback(() => {
+    setError("");
+    setLoading(false);
     setId("");
     setEvent(false);
     setVenue("");
@@ -42,27 +46,30 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
     setCity("");
     setState("");
     setZip(-1);
-    setAddress(null);
-    setDate(null);
-    setSignUpTime(null);
-    setStartTime(null);
-    setStopTime(null);
+    setDate("");
+    setSignUp("");
+    setStart("");
+    setStop("");
   }, []);
 
-  const createEvent = useCallback(async (data: EventPayload): Promise<void> => {
-    const { id, venue, address, date, signUpTime, startTime, stopTime } = data;
-    console.log(id, venue, address, date, signUpTime, startTime, stopTime);
+  const createEvent = useCallback(async (data: EventType): Promise<void> => {
+    console.log("createEvent: ");
+    console.log(data);
   }, []);
 
-  const updateEvent = useCallback(async (data: EventPayload): Promise<void> => {
-    const { id, venue, address, date, signUpTime, startTime, stopTime } = data;
-    console.log(id, venue, address, date, signUpTime, startTime, stopTime);
+  const updateEvent = useCallback(async (data: EventType): Promise<void> => {
+    const { id, venue, date, signUp, start, stop } = data;
+    console.log(id, venue, date, signUp, start, stop);
   }, []);
 
   const deleteEvent = useCallback(() => {}, []);
 
   const value = useMemo(
     () => ({
+      error,
+      setError,
+      loading,
+      setLoading,
       id,
       setId,
       event,
@@ -77,22 +84,24 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       setState,
       zip,
       setZip,
-      address,
-      setAddress,
       date,
       setDate,
-      signUpTime,
-      setSignUpTime,
-      startTime,
-      setStartTime,
-      stopTime,
-      setStopTime,
+      signUp,
+      setSignUp,
+      start,
+      setStart,
+      stop,
+      setStop,
       resetEvent,
       createEvent,
       updateEvent,
       deleteEvent,
     }),
     [
+      error,
+      setError,
+      loading,
+      setLoading,
       id,
       setId,
       event,
@@ -107,16 +116,14 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       setState,
       zip,
       setZip,
-      address,
-      setAddress,
       date,
       setDate,
-      signUpTime,
-      setSignUpTime,
-      startTime,
-      setStartTime,
-      stopTime,
-      setStopTime,
+      signUp,
+      setSignUp,
+      start,
+      setStart,
+      stop,
+      setStop,
       resetEvent,
       createEvent,
       updateEvent,

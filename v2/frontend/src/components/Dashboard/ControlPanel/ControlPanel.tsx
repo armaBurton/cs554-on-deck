@@ -11,7 +11,7 @@ export const ControlPanel: React.FC = () => {
     <div className="event-creation-container">
       <p className="roster">On-Deck</p>
       <div className="attendance">
-        ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+        {/* Attendance component will be filled in here */}
       </div>
       <div className="event-creation-panel">
         <button
