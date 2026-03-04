@@ -73,7 +73,7 @@ export interface EventType {
   street: string;
   city: string;
   state: string;
-  zip: number;
+  zip: number | "ZIP Code" | "";
   date: string; // "YYYY-MM-DD"
   signUp: string; // "HH:mm"
   start: string;
@@ -90,3 +90,4 @@ export interface Attendee {
 }
 
 export type AttendanceStatus = "A" | "M" | "N" | "C";
+s;

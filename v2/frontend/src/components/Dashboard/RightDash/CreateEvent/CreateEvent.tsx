@@ -2,6 +2,7 @@
 import React from "react";
 import { useAuth } from "../../../../contexts/AuthContext";
 import { useEvent } from "../../../../contexts/EventContext";
+import { states } from "../../../../services/states";
 import "../RightDash.css";
 import "./CreateEvent.css";
 
@@ -35,10 +36,20 @@ export const CreateEvent: React.FC = () => {
     createEvent,
   } = useEvent();
 
+  const checkForState = () => {
+    console.log("checkForState");
+    return states.includes(state);
+  };
+
   const handleSubmit = async (e: React.SubmitEvent) => {
     e.preventDefault();
     setError("");
     setLoading(true);
+
+    if (!checkForState()) {
+      throw new Error("State Not Found");
+    }
+    console.log("State Found");
 
     const blob = {
       venue: venue,
@@ -51,8 +62,8 @@ export const CreateEvent: React.FC = () => {
       start: start,
       stop: stop,
     };
-    createEvent(blob);
-    console.log(blob);
+
+    console.log("handleSubmit: ", blob);
   };
 
   return (
@@ -74,6 +85,7 @@ export const CreateEvent: React.FC = () => {
           className="event-input venue"
           value={venue}
           onChange={(e) => setVenue(e.target.value)}
+          required
         />
         <div className="spacer" />
         <input
@@ -82,6 +94,7 @@ export const CreateEvent: React.FC = () => {
           className="event-input street-address"
           value={street}
           onChange={(e) => setStreet(e.target.value)}
+          required
         />
         <input
           type="text"
@@ -89,11 +102,15 @@ export const CreateEvent: React.FC = () => {
           className="event-input city"
           value={city}
           onChange={(e) => setCity(e.target.value)}
+          required
         />
         <input
           type="text"
           placeholder="State"
           className="event-input state"
+          value={state}
+          onChange={(e) => setState(e.target.value)}
+          required
         />
         {/* <input
           type="zipcode"
@@ -101,14 +118,15 @@ export const CreateEvent: React.FC = () => {
           className="event-input zip"
         /> */}
         <input
-          type="number"
-          name="ZipCode"
-          placeholder="Zip Code"
+          type={`number || "ZIP Code" || ""`}
+          placeholder="ZIP Code"
           value={zip}
           onChange={(e) => {
             setZip(Number(e.target.value));
           }}
+          className="event-input zip-code"
           title="Enter a five-digit ZIP code or a ZIP+4 code (e.g., 12345 or 12345-6789)"
+          required
         />
         <input
           type="date"
@@ -116,6 +134,7 @@ export const CreateEvent: React.FC = () => {
           className="event-input date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
+          required
         />
         <div className="spacer" />
         <p>Sign Ups Start</p>
@@ -125,6 +144,7 @@ export const CreateEvent: React.FC = () => {
           className="event-input sign-up"
           value={signUp}
           onChange={(e) => setSignUp(e.target.value)}
+          required
         />
         <p>Start Time</p>
         <input
@@ -133,6 +153,7 @@ export const CreateEvent: React.FC = () => {
           className="event-input start-time"
           value={start}
           onChange={(e) => setStart(e.target.value)}
+          required
         />
         <p>End Time</p>
         <input
@@ -141,6 +162,7 @@ export const CreateEvent: React.FC = () => {
           className="event-input end-time"
           value={stop}
           onChange={(e) => setStop(e.target.value)}
+          required
         />
         <div className="sub-panel">
           <button type="submit">Create</button>

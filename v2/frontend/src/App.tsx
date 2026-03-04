@@ -27,8 +27,14 @@ function App() {
           <BrowserRouter>
             <NavStatus />
             <Routes>
-              <Route path="/register" element={<Register />} />
-              <Route path="/validate" element={<Validate />} />
+              <Route
+                path="/register"
+                element={<Register />}
+              />
+              <Route
+                path="/validate"
+                element={<Validate />}
+              />
               <Route
                 path="/dashboard"
                 element={
@@ -46,7 +52,10 @@ function App() {
                 }
               />
 
-              <Route path="/" element={<Validate />} />
+              <Route
+                path="/"
+                element={<Validate />}
+              />
             </Routes>
           </BrowserRouter>
         </EventProvider>

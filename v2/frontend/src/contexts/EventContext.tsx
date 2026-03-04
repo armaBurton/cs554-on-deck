@@ -30,7 +30,7 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
   const [street, setStreet] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [state, setState] = useState<string>("");
-  const [zip, setZip] = useState<number>(-1);
+  const [zip, setZip] = useState<number | "ZIP Code">("ZIP Code");
   const [date, setDate] = useState<string>(""); // YYYY:MM:DD
   const [signUp, setSignUp] = useState<string>(""); // "HH:mm"
   const [start, setStart] = useState<string>("");
@@ -45,7 +45,7 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
     setStreet("");
     setCity("");
     setState("");
-    setZip(-1);
+    setZip("ZIP Code");
     setDate("");
     setSignUp("");
     setStart("");
