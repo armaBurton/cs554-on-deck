@@ -12,38 +12,38 @@ public class Event : BaseModel
     [PrimaryKey("id")]
     public Guid? Id { get; set; }
 
-    [Column("user_id")]
+    [@Column("user_id")]
     public Guid UserId { get; set; }
 
-    [Column("venue")]
+    [@Column("venue")]
     public string Venue { get; set; } = string.Empty;
 
-    [Column("street_address")] // was "street"
+    [@Column("street")] // was "street"
     public string Street { get; set; } = string.Empty;
 
-    [Column("city")]
+    [@Column("city")]
     public string City { get; set; } = string.Empty;
 
-    [Column("state")]
+    [@Column("state")]
     public string State { get; set; } = string.Empty;
 
-    [Column("zipcode")] // was "zip"
+    [@Column("zip")] // was "zip"
     public int Zip { get; set; }
 
-    [Column("date")]
+    [@Column("date")]
     public string Date { get; set; } = string.Empty;
 
-    [Column("signup_start")] // was "signup"
+    [@Column("start")] // was "signup"
     public string Signup { get; set; } = string.Empty;
 
-    [Column("start_time")] // was "start"
+    [@Column("start")] // was "start"
     public string Start { get; set; } = string.Empty;
 
-    [Column("end_time")] // was "finish"
+    [@Column("stop")] // was "finish"
     public string Finish { get; set; } = string.Empty;
 
-    // No [Column] — not a DB column, loaded separately
-    public List<Attendee> Attendees { get; set; } = new();
+    // No [@Column] — not a DB column, loaded separately
+    // public List<Attendee> Attendees { get; set; } = new();
 }
 
 [Table("event_attendees")]
@@ -52,18 +52,18 @@ public class Attendee : BaseModel
     [PrimaryKey("id")]
     public Guid? Id { get; set; }
 
-    [Column("event_id")]
+    [@Column("event_id")]
     public Guid EventId { get; set; }
 
-    [Column("user_id")]
+    [@Column("user_id")]
     public Guid? UserId { get; set; }
 
-    [Column("attendee_name")]
+    [@Column("attendee_name")]
     public string AttendeeName { get; set; } = string.Empty;
 
-    [Column("attendance")]
+    [@Column("attendance")]
     public char Attendance { get; set; }
 
-    [Column("email")]
+    [@Column("email")]
     public string? Email { get; set; }
 }
