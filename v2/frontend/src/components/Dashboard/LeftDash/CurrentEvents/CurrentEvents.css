@@ -1,0 +1,7 @@
+/* v2\frontend\src\components\Dashboard\LeftDash\CurrentEvents\CurrentEvents.css */
+.current-events {
+  width: 100%;
+  height: calc(100% - 100px);
+  margin: 50px;
+  background-color: linen;
+}

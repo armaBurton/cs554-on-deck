@@ -7,6 +7,7 @@ import React, {
   useCallback,
   useEffect,
 } from "react";
+import { useAuth } from "./AuthContext";
 import { supabase } from "../lib/supabase";
 import type {
   EventContextType,
@@ -35,6 +36,9 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
   const [signUp, setSignUp] = useState<string>(""); // "HH:mm"
   const [start, setStart] = useState<string>("");
   const [stop, setStop] = useState<string>("");
+  // const [allEvents, getAllEvents] = useState<EventType | null>(null)
+
+  const { user, session } = useAuth();
 
   const resetEvent = useCallback(() => {
     setError("");
@@ -52,14 +56,36 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
     setStop("");
   }, []);
 
-  const createEvent = useCallback(async (data: EventType): Promise<void> => {
-    console.log("createEvent: ");
-    console.log(data);
-  }, []);
+  const createEvent = useCallback(
+    async (data: EventType): Promise<void> => {
+      data.user_id = user?.id;
+      // data.attendees = [];
+      console.log("createEvent<data>: ", data);
+      console.log("createEvent<user>: ", user);
+
+      // user ? console.log("createEvent<user>: ", user) : console.log("user not found");
+      // // console.log("createEvent<user>: ", user);
+
+      const { error } = await supabase.from("events").insert(data);
+
+      if (error) throw error;
+    },
+    [user],
+  );
 
   const updateEvent = useCallback(async (data: EventType): Promise<void> => {
-    const { id, venue, date, signUp, start, stop } = data;
-    console.log(id, venue, date, signUp, start, stop);
+    const { id, venue, date, sign_up, start, stop } = data;
+    console.log(id, venue, date, sign_up, start, stop);
+  }, []);
+
+  const getAllEvents = useCallback(async (): Promise<EventType[]> => {
+    console.log("getALlEvents");
+    const { data, error } = await supabase.from("events").select("*");
+
+    if (error) throw error;
+
+    console.log("getAllEvents.data: ", data);
+    return data;
   }, []);
 
   const deleteEvent = useCallback(() => {}, []);
@@ -95,6 +121,7 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       resetEvent,
       createEvent,
       updateEvent,
+      getAllEvents,
       deleteEvent,
     }),
     [
@@ -127,6 +154,7 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       resetEvent,
       createEvent,
       updateEvent,
+      getAllEvents,
       deleteEvent,
     ],
   );

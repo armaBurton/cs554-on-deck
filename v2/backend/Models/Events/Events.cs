@@ -1,8 +1,4 @@
 // v2\backend\Models\Events\Events.cs
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Runtime.CompilerServices;
 using backend.Models.Events.DTOs;
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
@@ -10,6 +6,7 @@ using Column = Supabase.Postgrest.Attributes.ColumnAttribute;
 
 namespace backend.Models.Events;
 
+[Table("events")]
 public class Event : BaseModel
 {
     [PrimaryKey("id")]
@@ -21,7 +18,7 @@ public class Event : BaseModel
     [Column("venue")]
     public string Venue { get; set; } = string.Empty;
 
-    [Column("street")]
+    [Column("street_address")] // was "street"
     public string Street { get; set; } = string.Empty;
 
     [Column("city")]
@@ -30,31 +27,43 @@ public class Event : BaseModel
     [Column("state")]
     public string State { get; set; } = string.Empty;
 
-    [Column("zip")]
+    [Column("zipcode")] // was "zip"
     public int Zip { get; set; }
 
     [Column("date")]
-    public string Date { get; set; }
+    public string Date { get; set; } = string.Empty;
 
-    [Column("signup")]
-    public string Signup { get; set; }
+    [Column("signup_start")] // was "signup"
+    public string Signup { get; set; } = string.Empty;
 
-    [Column("start")]
-    public string Start { get; set; }
+    [Column("start_time")] // was "start"
+    public string Start { get; set; } = string.Empty;
 
-    [Column("finish")]
-    public string Finish { get; set; }
+    [Column("end_time")] // was "finish"
+    public string Finish { get; set; } = string.Empty;
 
-    [Column("List")]
+    // No [Column] — not a DB column, loaded separately
     public List<Attendee> Attendees { get; set; } = new();
 }
 
+[Table("event_attendees")]
 public class Attendee : BaseModel
 {
+    [PrimaryKey("id")]
     public Guid? Id { get; set; }
+
+    [Column("event_id")]
     public Guid EventId { get; set; }
-    public Guid? UserId { get; set; } // null = creator-added; set = self-registered
+
+    [Column("user_id")]
+    public Guid? UserId { get; set; }
+
+    [Column("attendee_name")]
     public string AttendeeName { get; set; } = string.Empty;
-    public char Attendance { get; set; } // 'A' | 'M' | 'N' | 'C'
+
+    [Column("attendance")]
+    public char Attendance { get; set; }
+
+    [Column("email")]
     public string? Email { get; set; }
 }

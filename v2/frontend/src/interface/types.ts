@@ -63,6 +63,7 @@ export interface EventContextType {
   resetEvent: () => void;
   createEvent: (data: EventType) => Promise<void>;
   updateEvent: (data?: EventType) => Promise<void>;
+  getAllEvents: () => Promise<EventType[]>;
   deleteEvent: () => void;
 }
 
@@ -75,10 +76,10 @@ export interface EventType {
   state: string;
   zip: number | "ZIP Code" | "";
   date: string; // "YYYY-MM-DD"
-  signUp: string; // "HH:mm"
+  sign_up: string; // "HH:mm"
   start: string;
   stop: string;
-  attendees: Attendee[];
+  // attendees: Attendee[];
 }
 
 export interface Attendee {
@@ -90,4 +91,3 @@ export interface Attendee {
 }
 
 export type AttendanceStatus = "A" | "M" | "N" | "C";
-s;

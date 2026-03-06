@@ -5,6 +5,7 @@ import { useEvent } from "../../../../contexts/EventContext";
 import { states } from "../../../../services/states";
 import "../RightDash.css";
 import "./CreateEvent.css";
+import type { EventType } from "../../../../interface/types";
 
 export const CreateEvent: React.FC = () => {
   const { user, session } = useAuth();
@@ -34,10 +35,10 @@ export const CreateEvent: React.FC = () => {
     stop,
     setStop,
     createEvent,
+    getAllEvents,
   } = useEvent();
 
   const checkForState = () => {
-    console.log("checkForState");
     return states.includes(state);
   };
 
@@ -49,21 +50,21 @@ export const CreateEvent: React.FC = () => {
     if (!checkForState()) {
       throw new Error("State Not Found");
     }
-    console.log("State Found");
 
-    const blob = {
+    const data: EventType = {
       venue: venue,
       street: street,
       city: city,
       state: state,
       zip: zip,
       date: date,
-      signUp: signUp,
+      sign_up: signUp,
       start: start,
       stop: stop,
+      // attendees: [],
     };
 
-    console.log("handleSubmit: ", blob);
+    createEvent(data);
   };
 
   return (
@@ -118,7 +119,7 @@ export const CreateEvent: React.FC = () => {
           className="event-input zip"
         /> */}
         <input
-          type={`number || "ZIP Code" || ""`}
+          type="number"
           placeholder="ZIP Code"
           value={zip}
           onChange={(e) => {
