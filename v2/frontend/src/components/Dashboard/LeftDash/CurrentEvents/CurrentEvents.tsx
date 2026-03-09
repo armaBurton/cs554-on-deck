@@ -10,11 +10,12 @@ export const CurrentEvents: React.FC = () => {
 
   useEffect(() => {
     const getAll = async () => {
-      // console.log("getAllEvents");
       await getAllEvents();
     };
 
     getAll();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return <div className="current-events"></div>;
 };

@@ -63,7 +63,7 @@ export interface EventContextType {
   resetEvent: () => void;
   createEvent: (data: EventType) => Promise<void>;
   updateEvent: (data?: EventType) => Promise<void>;
-  getAllEvents: () => Promise<EventType[]>;
+  getAllEvents: () => Promise<void>;
   deleteEvent: () => void;
 }
 
@@ -79,6 +79,7 @@ export interface EventType {
   sign_up: string; // "HH:mm"
   start: string;
   stop: string;
+  allEvents: EventType;
   // attendees: Attendee[];
 }
 

@@ -36,7 +36,7 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
   const [signUp, setSignUp] = useState<string>(""); // "HH:mm"
   const [start, setStart] = useState<string>("");
   const [stop, setStop] = useState<string>("");
-  // const [allEvents, getAllEvents] = useState<EventType | null>(null)
+  const [allEvents, setAllEvents] = useState<EventType[]>([]);
 
   const { user, session } = useAuth();
 
@@ -54,17 +54,14 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
     setSignUp("");
     setStart("");
     setStop("");
+    setAllEvents([]);
   }, []);
 
   const createEvent = useCallback(
     async (data: EventType): Promise<void> => {
       data.user_id = user?.id;
-      // data.attendees = [];
       console.log("createEvent<data>: ", data);
       console.log("createEvent<user>: ", user);
-
-      // user ? console.log("createEvent<user>: ", user) : console.log("user not found");
-      // // console.log("createEvent<user>: ", user);
 
       const { error } = await supabase.from("events").insert(data);
 
@@ -78,15 +75,25 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
     console.log(id, venue, date, sign_up, start, stop);
   }, []);
 
-  const getAllEvents = useCallback(async (): Promise<EventType[]> => {
+  const getAllEvents = useCallback(async (): Promise<void> => {
     console.log("getALlEvents");
     const { data, error } = await supabase.from("events").select("*");
 
     if (error) throw error;
 
-    console.log("getAllEvents.data: ", data);
-    return data;
+    console.log("getAllEvents: ", allEvents);
+
+    setAllEvents(data ?? []);
   }, []);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // const getAllEvents = async (): Promise<Void> => {
+  //   const { data } = await supabase.from("events").select("*");
+
+  //   setAllEvents(data ?? []);
+
+  //   console.log("getAllEvents:", data);
+  // };
 
   const deleteEvent = useCallback(() => {}, []);
 
@@ -118,6 +125,8 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       setStart,
       stop,
       setStop,
+      allEvents,
+      setAllEvents,
       resetEvent,
       createEvent,
       updateEvent,
@@ -151,6 +160,8 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       setStart,
       stop,
       setStop,
+      allEvents,
+      setAllEvents,
       resetEvent,
       createEvent,
       updateEvent,
