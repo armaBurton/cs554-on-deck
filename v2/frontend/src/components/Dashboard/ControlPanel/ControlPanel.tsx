@@ -1,30 +1,16 @@
 // src/components/Dashboard/ControlPanel/ControlPanel.tsx
 import React from "react";
-import { useEvent } from "../../../contexts/EventContext";
+// import { useEvent } from "../../../contexts/EventContext";
+import { UserEvents } from "../RightDash/RightStatic/UserEvents/UserEvents";
+import { UserEventsControlPanel } from "../RightDash/RightStatic/UserEventsControlPanel/UserEventsControlPanel";
 
 import "./ControlPanel.css";
 
 export const ControlPanel: React.FC = () => {
-  const { event, setEvent } = useEvent();
-
   return (
     <div className="event-creation-container">
-      <p className="roster">On-Deck</p>
-      <div className="attendance">
-        {/* Attendance component will be filled in here */}
-      </div>
-      <div className="event-creation-panel">
-        <button
-          onClick={() => {
-            setEvent(!event);
-          }}
-          disabled={event}
-        >
-          Create Event
-        </button>
-        <button disabled={event}>Find Event</button>
-        <button disabled={event}>Something Else</button>
-      </div>
+      <UserEvents />
+      <UserEventsControlPanel />
     </div>
   );
 };

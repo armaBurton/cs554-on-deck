@@ -63,6 +63,7 @@ public class Attendee : BaseModel
 
     [@Column("attendance")]
     public char Attendance { get; set; }
+ls
 
     [@Column("email")]
     public string? Email { get; set; }
