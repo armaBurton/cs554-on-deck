@@ -81,7 +81,7 @@ export interface EventType {
   sign_up: string; // "HH:mm"
   start: string;
   stop: string;
-  allEvents: EventType;
+  allEvents: EventType[];
   // attendees: Attendee[];
 }
 

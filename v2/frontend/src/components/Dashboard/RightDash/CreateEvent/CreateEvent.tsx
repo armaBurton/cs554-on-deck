@@ -35,6 +35,7 @@ export const CreateEvent: React.FC = () => {
     stop,
     setStop,
     createEvent,
+    allEvents,
     getAllEvents,
   } = useEvent();
 
@@ -61,10 +62,13 @@ export const CreateEvent: React.FC = () => {
       sign_up: signUp,
       start: start,
       stop: stop,
-      // attendees: [],
+      allEvents: allEvents,
     };
 
     createEvent(data);
+    await getAllEvents();
+    setEvent(!event);
+    setLoading(false);
   };
 
   return (
