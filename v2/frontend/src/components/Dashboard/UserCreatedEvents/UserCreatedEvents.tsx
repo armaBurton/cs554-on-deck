@@ -1,6 +1,6 @@
 // v2\frontend\src\components\Dashboard\UserCreatedEvents\UserCreatedEvents.tsx
-import { useEvent } from "../../../contexts/EventContext";
-import { useProfile } from "../../../contexts/ProfileContext";
+// import { useEvent } from "../../../contexts/EventContext";
+// import { useProfile } from "../../../contexts/ProfileContext";
 import type { EventType } from "../../../interface/types";
 
 type UserCreatedEventsProps = {
@@ -8,12 +8,12 @@ type UserCreatedEventsProps = {
 };
 
 export const UserCreatedEvents = ({ event }: UserCreatedEventsProps) => {
-  const { allEvents } = useEvent();
-  const { profile } = useProfile();
+  // const { allEvents } = useEvent();
+  // const { profile } = useProfile();
 
-  console.log("UserEvents.allEvents: ", allEvents);
-  console.log("UserEvents.profile: ", profile);
-  console.log("UserEvents.event: ", event.city);
+  // console.log("UserEvents.allEvents: ", allEvents);
+  // console.log("UserEvents.profile: ", profile);
+  // console.log("UserEvents.event: ", event.city);
 
   return (
     <div className="event-container">

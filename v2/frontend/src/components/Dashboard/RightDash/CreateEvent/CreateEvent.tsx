@@ -65,6 +65,8 @@ export const CreateEvent: React.FC = () => {
       allEvents: allEvents,
     };
 
+    console.log("Data: ", data);
+
     createEvent(data);
     await getAllEvents();
     setEvent(!event);

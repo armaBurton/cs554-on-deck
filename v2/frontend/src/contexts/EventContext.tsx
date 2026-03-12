@@ -76,13 +76,13 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const getAllEvents = useCallback(async (): Promise<void> => {
-    console.log("getALlEvents");
+    // console.log("getALlEvents");
     const { data, error } = await supabase.from("events").select("*");
 
     if (error) throw error;
 
-    console.log("getAllEvents: ", allEvents);
-    console.log("getAllEvents.data: ", data);
+    // console.log("getAllEvents: ", allEvents);
+    // console.log("getAllEvents.data: ", data);
 
     setAllEvents(data ?? []);
   }, []);

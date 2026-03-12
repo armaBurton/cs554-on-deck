@@ -13,6 +13,8 @@ export const UserEvents = () => {
       {/* <p className="roster">On-Deck</p> */}
       <div className="attendance">
         {allEvents.map((event: EventType) => {
+          if (event.user_id === profile?.id) console.log("attendance: ", event);
+
           return event.user_id === profile?.id ? (
             <UserCreatedEvents
               event={event}
