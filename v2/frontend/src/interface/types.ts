@@ -60,6 +60,8 @@ export interface EventContextType {
   setStart: React.Dispatch<React.SetStateAction<string>>;
   stop: string;
   setStop: React.Dispatch<React.SetStateAction<string>>;
+  viewDetails: boolean;
+  setViewDetails: React.Dispatch<React.SetStateAction<boolean>>;
   allEvents: EventType[];
   setAllEvents: React.Dispatch<React.SetStateAction<EventType[]>>;
   resetEvent: () => void;

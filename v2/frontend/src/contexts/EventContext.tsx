@@ -37,6 +37,7 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
   const [start, setStart] = useState<string>("");
   const [stop, setStop] = useState<string>("");
   const [allEvents, setAllEvents] = useState<EventType[]>([]);
+  const [viewDetails, setViewDetails] = useState<boolean>(false);
 
   const { user, session } = useAuth();
 
@@ -55,6 +56,7 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
     setStart("");
     setStop("");
     setAllEvents([]);
+    setViewDetails(false);
   }, []);
 
   const createEvent = useCallback(
@@ -62,9 +64,6 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       data.user_id = user?.id;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { allEvents, ...eventData } = data;
-
-      console.log("createEvent<data>: ", eventData);
-      console.log("createEvent<user>: ", user);
 
       const { error } = await supabase.from("events").insert(eventData);
 
@@ -117,6 +116,8 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       setStop,
       allEvents,
       setAllEvents,
+      viewDetails,
+      setViewDetails,
       resetEvent,
       createEvent,
       updateEvent,
@@ -152,6 +153,8 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       setStop,
       allEvents,
       setAllEvents,
+      viewDetails,
+      setViewDetails,
       resetEvent,
       createEvent,
       updateEvent,

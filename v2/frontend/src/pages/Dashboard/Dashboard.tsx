@@ -16,7 +16,6 @@ export const Dashboard: React.FC = () => {
           <RightDash />
         </div>
       </section>
-      ;
     </>
   );
 };

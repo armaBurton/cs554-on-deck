@@ -1,0 +1,10 @@
+/* v2\frontend\src\pages\Modal\EventDetail\EventModal.css */
+.details {
+  position: fixed;
+  z-index: 9001;
+  background-color: chartreuse;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
