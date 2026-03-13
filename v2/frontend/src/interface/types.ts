@@ -84,22 +84,6 @@ export interface EventType {
   allEvents: EventType[];
   // attendees: Attendee[];
 }
-export interface PayloadType {
-  id?: string;
-  user_id?: string;
-  venue: string;
-  street: string;
-  city: string;
-  state: string;
-  zip: number | "ZIP Code" | "";
-  date: string; // "YYYY-MM-DD"
-  sign_up: string; // "HH:mm"
-  start: string;
-  stop: string;
-  // allEvents: EventType[];
-  // attendees: Attendee[];
-}
-
 export interface Attendee {
   id?: string;
   user_id?: string;

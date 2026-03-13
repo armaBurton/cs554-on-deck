@@ -65,8 +65,6 @@ export const CreateEvent: React.FC = () => {
       allEvents: allEvents,
     };
 
-    console.log("Data: ", data);
-
     createEvent(data);
     await getAllEvents();
     setEvent(!event);
@@ -119,11 +117,7 @@ export const CreateEvent: React.FC = () => {
           onChange={(e) => setState(e.target.value)}
           required
         />
-        {/* <input
-          type="zipcode"
-          placeholder="ZipCode"
-          className="event-input zip"
-        /> */}
+
         <input
           type="number"
           placeholder="ZIP Code"

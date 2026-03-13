@@ -61,7 +61,7 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
     async (data: EventType): Promise<void> => {
       data.user_id = user?.id;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { allEvents, ...eventData } = data; // remove allEvents if present
+      const { allEvents, ...eventData } = data;
 
       console.log("createEvent<data>: ", eventData);
       console.log("createEvent<user>: ", user);
@@ -75,8 +75,6 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const updateEvent = useCallback(async (data: EventType): Promise<void> => {
     console.log("updateEvent: ", data);
-    // const { id, venue, date, sign_up, start, stop } = data;
-    // console.log(id, venue, date, sign_up, start, stop);
   }, []);
 
   const getAllEvents = useCallback(async (): Promise<void> => {
@@ -84,20 +82,8 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
 
     if (error) throw error;
 
-    // console.log("getAllEvents: ", allEvents);
-    console.log("getAllEvents.data: ", data);
-
     setAllEvents(data ?? []);
   }, []);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  // const getAllEvents = async (): Promise<Void> => {
-  //   const { data } = await supabase.from("events").select("*");
-
-  //   setAllEvents(data ?? []);
-
-  //   console.log("getAllEvents:", data);
-  // };
 
   const deleteEvent = useCallback(() => {}, []);
 
