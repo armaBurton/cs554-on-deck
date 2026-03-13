@@ -1,5 +1,6 @@
 // v2\frontend\src\components\Dashboard\UserCreatedEvents\UserCreatedEvents.tsx
-import { useEvent } from "../../../contexts/EventContext";
+import { useState } from "react";
+// import { useEvent } from "../../../contexts/EventContext";
 // import { useProfile } from "../../../contexts/ProfileContext";
 import type { EventType } from "../../../interface/types";
 import { EventModal } from "../../../pages/Modal/EventDetail/EventModal";
@@ -9,12 +10,12 @@ type UserCreatedEventsProps = {
 };
 
 export const UserCreatedEvents = ({ event }: UserCreatedEventsProps) => {
-  const { viewDetails, setViewDetails } = useEvent();
+  const [viewDetails, setViewDetails] = useState(false);
 
   const handleClick = () => {
     setViewDetails(!viewDetails);
-    console.log(viewDetails);
   };
+  console.log(event);
 
   return (
     <div

@@ -1,19 +1,36 @@
 // v2\frontend\src\pages\Modal\EventDetail\EventDetail.tsx
 import { useEvent } from "../../../contexts/EventContext";
+import type { EventType } from "../../../interface/types";
 import "./EventModal.css";
 
-export const EventModal = (event) => {
-  const { setViewDetails } = useEvent();
+type Props = {
+  event: EventType;
+};
+
+export const EventModal = ({ event }: Props) => {
+  const { viewDetails, setViewDetails } = useEvent();
 
   const toggleDetails = () => {
-    setViewDetails(false);
     console.log(event);
+    setViewDetails(!viewDetails);
   };
 
   return (
     <div
-      className="details true"
+      className="modal-background"
       onClick={toggleDetails}
-    ></div>
+    >
+      <div className="modal">
+        <p>
+          venue: <span className="noun">{event.venue}</span>
+        </p>
+        <p>
+          address:{" "}
+          <span className="noun">
+            {event.street} {event.city}, {event.state}
+          </span>
+        </p>
+      </div>
+    </div>
   );
 };
