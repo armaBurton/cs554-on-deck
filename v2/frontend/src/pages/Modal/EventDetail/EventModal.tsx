@@ -15,21 +15,45 @@ export const EventModal = ({ event }: Props) => {
     setViewDetails(!viewDetails);
   };
 
+  const manageTime = (time: string) => {
+    time.split(":");
+    const split = time.split(":");
+    console.log("Split: ", split[0]);
+    if (split[0] > "12") {
+      const val = Number(split[0]) - 12;
+      // split[0] = val.toString();
+      console.log("Val: ", val.toString());
+      split[0] = val.toString();
+
+      return `${split[0]}:${split[1]} pm`;
+    } else if (split[0] === "12") {
+      return `${split[0]}:${split[1]} pm`;
+    } else {
+      return `${split[0]}:${split[1]} am`;
+    }
+  };
+
   return (
     <div
       className="modal-background"
       onClick={toggleDetails}
     >
       <div className="modal">
-        <p>
-          venue: <span className="noun">{event.venue}</span>
-        </p>
-        <p>
-          address:{" "}
-          <span className="noun">
-            {event.street} {event.city}, {event.state}
-          </span>
-        </p>
+        <div className="layout">
+          <p>
+            venue: <span className="noun">{event.venue}</span> date:{" "}
+            <span className="noun">{event.date}</span>
+          </p>
+          <p>
+            address:{" "}
+            <span className="noun">
+              {event.street} {event.city}, {event.state}
+            </span>
+          </p>
+          <p>
+            sign up: <span className="noun">{manageTime(event.sign_up)}</span>
+          </p>
+        </div>
       </div>
     </div>
   );

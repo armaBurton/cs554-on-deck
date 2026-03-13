@@ -22,7 +22,7 @@ export const UserCreatedEvents = ({ event }: UserCreatedEventsProps) => {
       className="event-container"
       onClick={handleClick}
     >
-      {viewDetails ? <EventModal event={event} /> : <></>}
+      {viewDetails && <EventModal event={event} />}
       <p>
         {event.venue} @ {event.date}
         sign up: {event.sign_up}, start: {event.start}
