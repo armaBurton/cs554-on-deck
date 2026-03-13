@@ -117,7 +117,6 @@ export const CreateEvent: React.FC = () => {
           onChange={(e) => setState(e.target.value)}
           required
         />
-
         <input
           type="number"
           placeholder="ZIP Code"

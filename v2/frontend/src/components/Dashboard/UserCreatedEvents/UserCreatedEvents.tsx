@@ -7,16 +7,16 @@ type UserCreatedEventsProps = {
   event: EventType;
 };
 
+const handleClick = () => {
+  console.log("click");
+};
+
 export const UserCreatedEvents = ({ event }: UserCreatedEventsProps) => {
-  // const { allEvents } = useEvent();
-  // const { profile } = useProfile();
-
-  // console.log("UserEvents.allEvents: ", allEvents);
-  // console.log("UserEvents.profile: ", profile);
-  // console.log("UserEvents.event: ", event.city);
-
   return (
-    <div className="event-container">
+    <div
+      className="event-container"
+      onClick={handleClick}
+    >
       <p>
         {event.venue} @ {event.date}
         sign up: {event.sign_up}, start: {event.start}
