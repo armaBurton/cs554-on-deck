@@ -9,22 +9,15 @@ export const UserEvents = () => {
   const { profile } = useProfile();
 
   return (
-    <>
-      {/* <p className="roster">On-Deck</p> */}
-      <div className="attendance">
-        {allEvents.map((event: EventType) => {
-          if (event.user_id === profile?.id) console.log("attendance: ", event);
-
-          return event.user_id === profile?.id ? (
-            <UserCreatedEvents
-              event={event}
-              key={event.id}
-            />
-          ) : (
-            <></>
-          );
-        })}
-      </div>
-    </>
+    <div className="attendance">
+      {allEvents
+        .filter((event: EventType) => event.user_id === profile?.id)
+        .map((event) => (
+          <UserCreatedEvents
+            event={event}
+            key={event.id}
+          />
+        ))}
+    </div>
   );
 };
