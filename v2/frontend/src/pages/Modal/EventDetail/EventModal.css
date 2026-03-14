@@ -1,6 +1,6 @@
 /* v2\frontend\src\pages\Modal\EventDetail\EventModal.css */
 .event-modal {
-  position: fixed;
+  /* position: fixed;
   z-index: 9001;
   background-color: var(--dark-grey-a85);
   width: 100vw;
@@ -9,9 +9,31 @@
   left: 0;
   display: flex;
   align-items: center;
-  justify-self: center;
+  justify-self: center; */
+  display: grid;
+  grid-template-columns: 1fr 2fr;
 }
 
-.event-div {
+.left-location {
+  /* background-color: magenta; */
+  height: 100%;
+  font-size: 1.5em;
+  text-align: baseline;
+  padding: 10px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
 
+.right-location {
+  text-align: baseline;
+  height: 100%;
+  width: 100%;
+  /* background-color: chartreuse; */
+  font-weight: 900;
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
 }
