@@ -22,7 +22,6 @@ export const getName = ({
 export const manageTime = (time: string) => {
   time.split(":");
   const split = time.split(":");
-  console.log("Split: ", split[0]);
   if (split[0] > "12") {
     const val = Number(split[0]) - 12;
 
@@ -34,4 +33,11 @@ export const manageTime = (time: string) => {
   } else {
     return `${split[0]}:${split[1]} am`;
   }
+};
+
+export const manageDate = (date: string) => {
+  const split = date.split("-");
+  console.log(split);
+
+  return `${split[1]}/${split[2]}`;
 };

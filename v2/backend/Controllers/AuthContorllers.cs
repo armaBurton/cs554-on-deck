@@ -26,18 +26,7 @@ public class AuthController : ControllerBase
         {
             var client = await _supabaseService.GetClientAsync();
 
-            // var options = new SignUpOptions
-            // {
-            //     Data = new Dictionary<string, object>
-            //     {
-            //         { "first_name", request.FirstName ?? string.Empty },
-            //         { "last_name", request.LastName ?? string.Empty },
-            //         { "stage_name", request.StageName ?? string.Empty },
-            //     },
-            // };
-
             var session = await client.Auth.SignUp(request.Email, request.Password);
-            // var session = await client.Auth.SignUp(request.Email, request.Password, options);
 
             if (session?.User == null)
             {
