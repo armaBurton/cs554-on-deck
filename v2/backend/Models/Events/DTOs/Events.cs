@@ -19,9 +19,9 @@ public class CreateEventRequest
     public string City { get; set; } = string.Empty;
     public string State { get; set; } = string.Empty;
     public int Zip { get; set; }
-    public string Date { get; set; }
-    public string Signup { get; set; }
-    public string Start { get; set; }
-    public string Finish { get; set; }
+    public string Date { get; set; } = string.Empty;
+    public string Signup { get; set; } = string.Empty;
+    public string Start { get; set; } = string.Empty;
+    public string Finish { get; set; } = string.Empty;
     public List<AttendeeRequest> Attendees { get; set; } = new();
 }
