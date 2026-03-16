@@ -33,7 +33,7 @@ public class Event : BaseModel
     [@Column("date")]
     public string Date { get; set; } = string.Empty;
 
-    [@Column("start")] // was "signup"
+    [@Column("signup")] // was "signup"
     public string Signup { get; set; } = string.Empty;
 
     [@Column("start")] // was "start"

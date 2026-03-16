@@ -88,6 +88,7 @@ builder
 builder.Services.AddAuthorization();
 builder.Services.AddSingleton(supabase);
 builder.Services.AddScoped<EventsService>();
+builder.Services.AddScoped<UserService>();
 
 var app = builder.Build();
 

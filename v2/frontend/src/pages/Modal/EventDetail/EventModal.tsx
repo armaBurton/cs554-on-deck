@@ -32,6 +32,9 @@ export const EventModal = ({ event }: Props) => {
           <p>sign up</p>
           <p>start time</p>
           <p>end time</p>
+
+          <br />
+          <p>organizer</p>
         </div>
         <div className="right-location">
           <p>{manageDate(event.date)}</p>
