@@ -1,6 +1,5 @@
 // src/components/Dashboard/ControlPanel/ControlPanel.tsx
 import React from "react";
-// import { useEvent } from "../../../contexts/EventContext";
 import { CurrentEvents } from "../RightDash/RightStatic/CurrentEvents/CurrentEvents";
 import { PastEvents } from "../RightDash/RightStatic/PastEvents/PastEvents";
 import { AttendedEvents } from "../RightDash/RightStatic/AttendedEvents/AttendedEvents";

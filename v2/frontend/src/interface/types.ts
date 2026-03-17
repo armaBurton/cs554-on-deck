@@ -106,3 +106,25 @@ export interface Attendee {
 }
 
 export type AttendanceStatus = "A" | "M" | "N" | "C";
+
+export interface EventAttendanceType {
+  id?: string;
+  event_id: string;
+  user_id: string;
+  status: AttendanceStatus;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface AttendanceContextType {
+  attendance: EventAttendanceType[];
+  loadingAttendance: boolean;
+  getMyAttendance: () => Promise<void>;
+  upsertAttendance: (
+    eventId: string,
+    status: AttendanceStatus,
+  ) => Promise<void>;
+  deleteAttendance: (eventId: string) => Promise<void>;
+  isEventCurrent: (date: string) => boolean;
+  getStatusForEvent: (eventId: string) => AttendanceStatus | null;
+}

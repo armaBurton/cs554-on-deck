@@ -3,7 +3,6 @@ import { useEvent } from "../../../../../contexts/EventContext";
 import { useProfile } from "../../../../../contexts/ProfileContext";
 import type { EventType } from "../../../../../interface/types";
 import { UserCreatedEvents } from "../../../UserCreatedEvents/UserCreatedEvents";
-// import { EventModal } from "../../../../../pages/Modal/EventDetail/EventModal";
 
 export const PastEvents = () => {
   const { allEvents, viewDetails } = useEvent();
