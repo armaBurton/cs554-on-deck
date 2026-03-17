@@ -26,6 +26,8 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [stageName, setStageName] = useState<string>("");
+  const [users, setUsers] = useState<ProfileType[]>([]);
+  const [loadingUsers, setLoadingUsers] = useState<boolean>(false);
 
   useEffect(() => {
     if (!user) {
@@ -54,6 +56,18 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
     fetchProfile();
   }, [user]);
 
+  const getAllUsers = useCallback(async (): Promise<void> => {
+    setLoadingUsers(true);
+
+    const { data, error } = await supabase.from("profiles").select("*");
+
+    if (error) throw error;
+
+    setUsers(data ?? []);
+
+    setLoadingUsers(false);
+  }, []);
+
   const updateProfile = useCallback(
     async (
       user: User,
@@ -61,10 +75,6 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
       lastName: string,
       stageName: string,
     ) => {
-      // if (!user) throw new Error("No user logged in");
-
-      console.log("updating profile --> ", user);
-
       const { error } = await supabase.from("profiles").upsert({
         id: user.id,
         email: user.email,
@@ -82,6 +92,8 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
         last_name: lastName,
         stage_name: stageName,
       } as ProfileType);
+
+      getAllUsers();
     },
     [],
   );
@@ -99,6 +111,9 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
       stageName,
       setStageName,
       updateProfile,
+      users,
+      loadingUsers,
+      getAllUsers,
     }),
     [
       profile,
@@ -112,6 +127,9 @@ export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({
       stageName,
       setStageName,
       updateProfile,
+      users,
+      loadingUsers,
+      getAllUsers,
     ],
   );
 

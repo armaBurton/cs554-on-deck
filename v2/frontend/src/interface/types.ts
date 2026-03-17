@@ -31,6 +31,13 @@ export interface ProfileContextType {
     lastName: string,
     stageName: string,
   ) => Promise<void>;
+  users: ProfileType[];
+  setUsers: React.Dispatch<React.Dispatch<React.SetStateAction<ProfileType[]>>>;
+  loadingUsers: boolean;
+  setLoadingUsers: React.Dispatch<
+    React.Dispatch<React.SetStateAction<boolean>>
+  >;
+  getAllUsers: () => Promise<void>;
 }
 
 export interface EventContextType {
@@ -69,6 +76,10 @@ export interface EventContextType {
   updateEvent: (data?: EventType) => Promise<void>;
   getAllEvents: () => Promise<void>;
   deleteEvent: () => void;
+  current: boolean;
+  setCurrent: React.Dispatch<React.SetStateAction<boolean>>;
+  past: boolean;
+  setPast: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface EventType {

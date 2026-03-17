@@ -1,6 +1,7 @@
 // v2\frontend\src\pages\Modal\EventDetail\EventDetail.tsx
 import { useEvent } from "../../../contexts/EventContext";
-import { manageTime, manageDate } from "../../../services/services";
+import { useProfile } from "../../../contexts/ProfileContext";
+import { manageTime, manageDate, getName } from "../../../services/services";
 import type { EventType } from "../../../interface/types";
 import "./EventModal.css";
 
@@ -10,9 +11,11 @@ type Props = {
 
 export const EventModal = ({ event }: Props) => {
   const { viewDetails, setViewDetails } = useEvent();
+  const { users } = useProfile();
+
+  const organizer = users.find((u) => u.id === event.user_id);
 
   const toggleDetails = () => {
-    console.log(event);
     setViewDetails(!viewDetails);
   };
 
@@ -45,6 +48,8 @@ export const EventModal = ({ event }: Props) => {
           <p>{manageTime(event.sign_up)}</p>
           <p>{manageTime(event.start)}</p>
           <p>{manageTime(event.stop)}</p>
+          <br />
+          <p>{organizer && getName(organizer)}</p>
         </div>
       </div>
     </div>

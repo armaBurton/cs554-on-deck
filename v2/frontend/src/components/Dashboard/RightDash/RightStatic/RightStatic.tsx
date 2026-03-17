@@ -3,6 +3,7 @@ import React from "react";
 import { useProfile } from "../../../../contexts/ProfileContext";
 import { getName } from "../../../../services/services";
 import "../RightPanels.css";
+import { RightController } from "../RightController/RightController";
 
 export const RightStatic: React.FC = () => {
   const { profile } = useProfile();

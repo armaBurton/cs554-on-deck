@@ -19,20 +19,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [userList, setUserList] = useState<User | null>(null);
+  // const [userList, setUserList] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
-
-  // const fetchAllUsers = async () => {
-  //   const {
-  //     data: { users },
-  //     error,
-  //   } = await supabase.auth.admin.listUsers();
-
-  //   if (error) throw error;
-
-  //   console.log(users);
-  // };
 
   useEffect(() => {
     let mounted = true;

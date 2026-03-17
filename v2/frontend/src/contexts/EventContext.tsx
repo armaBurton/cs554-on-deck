@@ -38,6 +38,9 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
   const [stop, setStop] = useState<string>("");
   const [allEvents, setAllEvents] = useState<EventType[]>([]);
   const [viewDetails, setViewDetails] = useState<boolean>(false);
+  const [current, setCurrent] = useState<boolean>(true);
+  const [past, setPast] = useState<boolean>(false);
+  // const [];
 
   const { user, session } = useAuth();
 
@@ -55,8 +58,9 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
     setSignUp("");
     setStart("");
     setStop("");
-    setAllEvents([]);
     setViewDetails(false);
+    setCurrent(true);
+    setPast(false);
   }, []);
 
   const createEvent = useCallback(
@@ -123,6 +127,10 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       updateEvent,
       getAllEvents,
       deleteEvent,
+      current,
+      setCurrent,
+      past,
+      setPast,
     }),
     [
       error,
@@ -160,6 +168,10 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
       updateEvent,
       getAllEvents,
       deleteEvent,
+      current,
+      setCurrent,
+      past,
+      setPast,
     ],
   );
 

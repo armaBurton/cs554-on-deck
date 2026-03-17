@@ -1,6 +1,7 @@
 /* src/components/Dashboard/RightDash/RightStatic/RightDash.css */
 
-.right-section {
+.right-section,
+.controller-container {
   height: calc(100vh - 50px);
   background-color: var(--red-a50);
   max-width: calc(100vw / 3);

@@ -1,0 +1,8 @@
+/* v2\frontend\src\components\Dashboard\RightDash\RightController\RightController.css */
+
+.right-controller {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}

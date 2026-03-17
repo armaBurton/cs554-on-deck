@@ -1,11 +1,11 @@
-// v2\frontend\src\components\Dashboard\RightDash\RightStatic\UserEvents\UserEvents.tsx
+// v2\frontend\src\components\Dashboard\RightDash\RightStatic\PastEvents\PastEvents.tsx
 import { useEvent } from "../../../../../contexts/EventContext";
 import { useProfile } from "../../../../../contexts/ProfileContext";
 import type { EventType } from "../../../../../interface/types";
 import { UserCreatedEvents } from "../../../UserCreatedEvents/UserCreatedEvents";
 // import { EventModal } from "../../../../../pages/Modal/EventDetail/EventModal";
 
-export const UserEvents = () => {
+export const PastEvents = () => {
   const { allEvents, viewDetails } = useEvent();
   const { profile } = useProfile();
 
@@ -13,6 +13,8 @@ export const UserEvents = () => {
     <div className="attendance">
       {allEvents
         .filter((event: EventType) => event.user_id === profile?.id)
+        .filter((event) => event.date < new Date().toISOString().split("T")[0])
+        .sort((a, b) => a.date.localeCompare(b.date))
         .map((event) => (
           <UserCreatedEvents
             event={event}
