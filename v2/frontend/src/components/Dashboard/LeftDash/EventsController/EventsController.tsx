@@ -2,6 +2,7 @@
 import { useAttendance } from "../../../../contexts/AttendanceContext";
 // import { useProfile } from "../../../../contexts/ProfileContext";
 // import { useEvent } from "../../../../contexts/EventContext";
+import type { EventType } from "../../../../interface/types";
 import "./EventsController.css";
 
 type Props = {
@@ -14,6 +15,7 @@ export const EventsController = ({ event }: Props) => {
   const handleAdd = (e: React.MouseEvent) => {
     e.stopPropagation();
     console.log("handleAdd");
+    if (!event.id) return;
     upsertAttendance(event.id, event.status);
   };
 

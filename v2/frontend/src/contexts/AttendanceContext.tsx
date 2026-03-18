@@ -46,6 +46,8 @@ export const AttendanceProvider: React.FC<{ children: React.ReactNode }> = ({
     async (eventId: string, status: AttendanceStatus): Promise<void> => {
       if (!user) return;
 
+      console.log("upsertAttendance: ", eventId, " ", status);
+
       const { error } = await supabase.from("event_attendance").upsert(
         {
           event_id: eventId,

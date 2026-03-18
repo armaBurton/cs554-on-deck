@@ -95,6 +95,7 @@ export interface EventType {
   start: string;
   stop: string;
   allEvents: EventType[];
+  status: AttendanceStatus;
   // attendees: Attendee[];
 }
 export interface Attendee {
