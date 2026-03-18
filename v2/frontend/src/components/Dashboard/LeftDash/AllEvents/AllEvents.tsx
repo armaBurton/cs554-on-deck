@@ -1,8 +1,8 @@
 // v2\frontend\src\components\Dashboard\LeftDash\CurrentEvents\CurrentEvents.tsx
 import React, { useEffect } from "react";
 import { useProfile } from "../../../../contexts/ProfileContext";
-// import { UserEvents } from "../../RightDash/RightStatic/CurrentEvents/CurrentEvents";
 import { useEvent } from "../../../../contexts/EventContext";
+
 import { UserCreatedEvents } from "../../UserCreatedEvents/UserCreatedEvents";
 
 import "./AllEvents.css";

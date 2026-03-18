@@ -1,0 +1,9 @@
+/* v2\frontend\src\components\Dashboard\LeftDash\EventsController\EventsController.css */
+.event-modal-controller {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 50px;
+  gap: 10px;
+}

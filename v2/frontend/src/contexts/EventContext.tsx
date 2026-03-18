@@ -85,6 +85,8 @@ export const EventProvider: React.FC<{ children: React.ReactNode }> = ({
 
     if (error) throw error;
 
+    console.log("GetAllEvents: ", data);
+
     setAllEvents(data ?? []);
   }, []);
 
